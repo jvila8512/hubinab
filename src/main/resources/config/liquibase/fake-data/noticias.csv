@@ -1,0 +1,11 @@
+id;titulo;descripcion;url_foto;url_foto_content_type;publica;publicar;fecha_creada
+1;utilización Hormigon;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;true;true;2022-10-16
+2;optical Euro generate;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;false;true;2022-10-15
+3;Gris;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;true;true;2022-10-16
+4;Cedi networks Suiza;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;false;true;2022-10-15
+5;Desarrollador;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;true;true;2022-10-16
+6;Jefe Urbanización FTP;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;true;false;2022-10-16
+7;value-added Fantástico;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;false;false;2022-10-16
+8;hacking;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;false;false;2022-10-15
+9;funcionalidad;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;false;true;2022-10-16
+10;primary Galicia Reducido;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png;true;false;2022-10-16

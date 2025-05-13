@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "componentes": {
+      "home": {
+        "title": "Componentes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Componente",
+        "createOrEditLabel": "Crear o editar Componente",
+        "notFound": "Ningún Componente ha sido encontrado"
+      },
+      "created": "Un nuevo Componente ha sido creado",
+      "updated": "Un Componente ha sido actualizado",
+      "deleted": "Un Componente ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar el Componente?"
+      },
+      "detail": {
+        "title": "Componentes"
+      },
+      "id": "ID",
+      "componente": "Componente",
+      "descripcion": "Descripción",
+      "activo": "Activo"
+    }
+  }
+}

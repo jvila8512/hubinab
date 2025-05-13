@@ -1,0 +1,30 @@
+.footer {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0rem;
+
+  background-color: #7c5b7b;
+}
+
+.gobierno {
+  display: inline-block;
+  width: 100%;
+  height: 100px;
+  background: url('../../../../content/images/gobierno\ tunas.jpg') no-repeat center top;
+  background-size: contain;
+}
+.universidad {
+  display: inline-block;
+  width: 100%;
+  height: 100px;
+  background: url('../../../../content/images/universidad.png') no-repeat center top;
+  background-size: contain;
+}
+.anir {
+  display: inline-block;
+  width: 100%;
+  height: 100px;
+  background: url('../../../../content/images/logo-anir-696x385.jpg') no-repeat center top;
+  background-size: contain;
+}

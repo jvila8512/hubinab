@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165817",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tipo_noticia",
+  "fields": [
+    {
+      "fieldName": "tipoNoticia",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TipoNoticia",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "noticias",
+      "otherEntityRelationshipName": "tipoNoticia",
+      "relationshipName": "noticias",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

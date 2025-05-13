@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "likeIdea": {
+      "home": {
+        "title": "Like Ideas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Like Idea",
+        "createOrEditLabel": "Crear o editar Like Idea",
+        "notFound": "Ningún Like Ideas encontrado"
+      },
+      "created": "Me gusta!",
+      "updated": "Un Like ",
+      "deleted": "No me gusta!",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Like Idea?"
+      },
+      "detail": {
+        "title": "Like Idea"
+      },
+      "id": "ID",
+      "like": "Like",
+      "fechaInscripcion": "Fecha Inscripción",
+      "user": "Usuario",
+      "idea": "Idea"
+    }
+  }
+}

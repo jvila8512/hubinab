@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "tipoNotificacion": {
+      "home": {
+        "title": "Tipo Notificación",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tipo Notificación",
+        "createOrEditLabel": "Crear o editar Tipo Notificación",
+        "notFound": "Ningún Tipo Notificación se ha encontrado"
+      },
+      "created": "Un nuevo Tipo Notificación ha sido creado",
+      "updated": "Un Tipo Notificación ha sido actualizado",
+      "deleted": "Un Tipo Notificación ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Notificación?"
+      },
+      "detail": {
+        "title": "Tipo Notificación"
+      },
+      "id": "ID",
+      "tipoNotificacion": "Tipo Notificación",
+      "icono": "Icono"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "jhipsterApp": {
+    "ecosistema": {
+      "home": {
+        "title": "Ecosistemas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Ecosistema",
+        "createOrEditLabel": "Crear o editar Ecosistema",
+        "notFound": "Ningún Ecosistemas ha sido encontrado"
+      },
+      "created": "Un nuevo Ecosistema ha sido creado ",
+      "updated": "Un Ecosistema ha sido actualizado ",
+      "deleted": "Un Ecosistema ha sido eliminado ",
+      "solicitude": "Solicitud enviada, espere respuesta",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Ecosistema {{ id }}?"
+      },
+      "detail": {
+        "title": "Ecosistema"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "tematica": "Temática",
+      "activo": "Activo",
+      "logoUrl": "Imagen",
+      "ranking": "Ranking",
+      "usuariosCant": "Usuarios Cant",
+      "retosCant": "Retos Cant",
+      "ideasCant": "Ideas Cant",
+      "reto": "Reto",
+      "proyectos": "Proyectos",
+      "ecosistemaPeticiones": "Ecosistema Peticiones",
+      "noticias": "Noticias",
+      "redesUrl": "Redes Url",
+      "anirista": "Anirista",
+      "ecosistemaComponente": "Componente Ecosistema",
+      "user": "Usuario",
+      "ecosistemaRol": "Rol Ecosistema ",
+      "usurioecosistema": "Usuario Ecosistema",
+      "user": "Administrador del Ecosistema"
+    }
+  }
+}

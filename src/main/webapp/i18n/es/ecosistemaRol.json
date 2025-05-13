@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "ecosistemaRol": {
+      "home": {
+        "title": "Roles de los Ecosistemas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Rol Ecosistema ",
+        "createOrEditLabel": "Crear o editar Rol Ecosistema ",
+        "notFound": "Ningún Rol Ecosistema ha sido encontrado"
+      },
+      "created": "Un nuevo Rol Ecosistema  ha sido creado",
+      "updated": "Un Rol Ecosistema  ha sido actualizado",
+      "deleted": "Un Rol Ecosistema ha sido eliminado ",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Rol Ecosistema?"
+      },
+      "detail": {
+        "title": "Rol de Ecosistema"
+      },
+      "id": "ID",
+      "ecosistemaRol": "Rol Ecosistema",
+      "descripcion": "Descripción",
+      "ecosistema": "Ecosistema"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+id;servicio;descripcion;publicado;foto;foto_content_type
+1;1080p;../fake-data/blob/hipster.txt;false;../fake-data/blob/hipster.png;image/png
+2;Aragón;../fake-data/blob/hipster.txt;false;../fake-data/blob/hipster.png;image/png
+3;Guayana Videojuegos;../fake-data/blob/hipster.txt;true;../fake-data/blob/hipster.png;image/png
+4;Intercambiable Morado Moda;../fake-data/blob/hipster.txt;true;../fake-data/blob/hipster.png;image/png
+5;web-enabled Inteligente;../fake-data/blob/hipster.txt;true;../fake-data/blob/hipster.png;image/png
+6;Mancha Analista;../fake-data/blob/hipster.txt;false;../fake-data/blob/hipster.png;image/png
+7;Morado EXE;../fake-data/blob/hipster.txt;true;../fake-data/blob/hipster.png;image/png
+8;Plástico Canarias Pollo;../fake-data/blob/hipster.txt;true;../fake-data/blob/hipster.png;image/png
+9;línea;../fake-data/blob/hipster.txt;true;../fake-data/blob/hipster.png;image/png
+10;Open-source;../fake-data/blob/hipster.txt;false;../fake-data/blob/hipster.png;image/png

@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20230205175815",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "servicios",
+  "fields": [
+    {
+      "fieldName": "servicio",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "publicado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "foto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Servicios",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

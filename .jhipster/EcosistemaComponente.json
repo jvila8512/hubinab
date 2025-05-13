@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20230402202206",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "ecosistema_componente",
+  "fields": [
+    {
+      "fieldName": "link",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documentoUrl",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "EcosistemaComponente",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "componente",
+      "otherEntityName": "componentes",
+      "otherEntityRelationshipName": "ecosistemaComponente",
+      "relationshipName": "componente",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "ecosistema",
+      "otherEntityRelationshipName": "ecosistemaComponente",
+      "relationshipName": "ecosistema",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

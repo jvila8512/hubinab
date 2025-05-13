@@ -1,0 +1,66 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165816",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "noticias",
+  "fields": [
+    {
+      "fieldName": "titulo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "urlFoto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "publica",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "publicar",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "fechaCreada",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Noticias",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "noticias",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "ecosistema",
+      "otherEntityRelationshipName": "noticias",
+      "relationshipName": "ecosistema",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "tipoNoticia",
+      "otherEntityName": "tipoNoticia",
+      "otherEntityRelationshipName": "noticias",
+      "relationshipName": "tipoNoticia",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,117 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165807",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "ecosistema",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "tematica",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "activo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "logoUrl",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "ranking",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "usuariosCant",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "retosCant",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ideasCant",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Ecosistema",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "reto",
+      "otherEntityRelationshipName": "ecosistema",
+      "relationshipName": "reto",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "proyectos",
+      "otherEntityRelationshipName": "ecosistema",
+      "relationshipName": "proyectos",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ecosistemaPeticiones",
+      "otherEntityRelationshipName": "ecosistema",
+      "relationshipName": "ecosistemaPeticiones",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "noticias",
+      "otherEntityRelationshipName": "ecosistema",
+      "relationshipName": "noticias",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "redesSociales",
+      "otherEntityRelationshipName": "ecosistema",
+      "relationshipName": "redesUrl",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anirista",
+      "otherEntityRelationshipName": "ecosistema",
+      "relationshipName": "anirista",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ecosistemaComponente",
+      "otherEntityRelationshipName": "ecosistema",
+      "relationshipName": "ecosistemaComponente",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "ecosistema",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "ecosistemaRol",
+      "otherEntityName": "ecosistemaRol",
+      "otherEntityRelationshipName": "ecosistema",
+      "relationshipName": "ecosistemaRol",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "usuarioEcosistema",
+      "otherEntityRelationshipName": "ecosistema",
+      "ownerSide": false,
+      "relationshipName": "usurioecosistema",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

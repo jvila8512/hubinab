@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity UsuarioEcosistema.
+    -->
+    <changeSet id="20221016165808-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="usuario_ecosistema"
+                                 constraintName="fk_usuario_ecosistema__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="categoria_user_id"
+                                 baseTableName="usuario_ecosistema"
+                                 constraintName="fk_usuario_ecosistema__categoria_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="usuario_ecosistema_id"
+                                 baseTableName="rel_usuario_ecosistema__ecosistema"
+                                 constraintName="fk_rel_usuario_ecosistema__ecosistema__usuario_ecosistema_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario_ecosistema"/>
+
+        <addForeignKeyConstraint baseColumnNames="ecosistema_id"
+                                 baseTableName="rel_usuario_ecosistema__ecosistema"
+                                 constraintName="fk_rel_usuario_ecosistema__ecosistema__ecosistema_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ecosistema"/>
+    </changeSet>
+</databaseChangeLog>

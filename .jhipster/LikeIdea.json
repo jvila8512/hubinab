@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20221104121039",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "like_idea",
+  "fields": [
+    {
+      "fieldName": "like",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaInscripcion",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LikeIdea",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "likeIdea",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "titulo",
+      "otherEntityName": "idea",
+      "otherEntityRelationshipName": "like",
+      "relationshipName": "idea",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

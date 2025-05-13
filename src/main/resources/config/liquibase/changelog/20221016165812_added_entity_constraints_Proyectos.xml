@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Proyectos.
+    -->
+    <changeSet id="20221016165812-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="proyectos"
+                                 constraintName="fk_proyectos__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="proyectos_id"
+                                 baseTableName="rel_proyectos__sector"
+                                 constraintName="fk_rel_proyectos__sector__proyectos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proyectos"/>
+
+        <addForeignKeyConstraint baseColumnNames="sector_id"
+                                 baseTableName="rel_proyectos__sector"
+                                 constraintName="fk_rel_proyectos__sector__sector_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sector"/>
+
+        <addForeignKeyConstraint baseColumnNames="proyectos_id"
+                                 baseTableName="rel_proyectos__linea_investigacion"
+                                 constraintName="fk_rel_proyectos__linea_investigacion__proyectos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proyectos"/>
+
+        <addForeignKeyConstraint baseColumnNames="linea_investigacion_id"
+                                 baseTableName="rel_proyectos__linea_investigacion"
+                                 constraintName="fk_rel_proyectos__linea_investigacion__linea_investigacion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="linea_investigacion"/>
+
+        <addForeignKeyConstraint baseColumnNames="proyectos_id"
+                                 baseTableName="rel_proyectos__ods"
+                                 constraintName="fk_rel_proyectos__ods__proyectos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proyectos"/>
+
+        <addForeignKeyConstraint baseColumnNames="ods_id"
+                                 baseTableName="rel_proyectos__ods"
+                                 constraintName="fk_rel_proyectos__ods__ods_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ods"/>
+
+        <addForeignKeyConstraint baseColumnNames="ecosistema_id"
+                                 baseTableName="proyectos"
+                                 constraintName="fk_proyectos__ecosistema_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ecosistema"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_proyecto_id"
+                                 baseTableName="proyectos"
+                                 constraintName="fk_proyectos__tipo_proyecto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_proyecto"/>
+    </changeSet>
+</databaseChangeLog>

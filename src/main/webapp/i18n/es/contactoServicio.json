@@ -1,0 +1,29 @@
+{
+  "jhipsterApp": {
+    "contactoServicio": {
+      "home": {
+        "title": "Contacto Servicios",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Contacto Servicio",
+        "createOrEditLabel": "Crear o editar Contacto Servicio",
+        "notFound": "Ningún Contacto Servicios encontrado"
+      },
+      "created": "Un nuevo Contacto Servicio ha sido creado",
+      "updated": "Un Contacto Servicio ha sido actualizado",
+      "deleted": "Un Contacto Servicio ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Contacto Servicio?"
+      },
+      "detail": {
+        "title": "Contacto Servicio"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "telefono": "Teléfono",
+      "correo": "Correo",
+      "mensaje": "Mensaje",
+      "fechaContacto": "Fecha Contacto",
+      "servicios": "Servicios"
+    }
+  }
+}

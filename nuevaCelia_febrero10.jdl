@@ -1,0 +1,292 @@
+
+entity TipoIdea {
+	tipoIdea String required
+}
+entity Idea {
+	
+   numeroRegistro Integer required,   
+   titulo String required,
+   descripcion TextBlob required,
+   autor String required,
+   fechaInscripcion LocalDate required
+   visto Integer
+   foto ImageBlob
+   aceptada Boolean
+}
+
+
+entity ComenetariosIdea{
+comentario TextBlob required
+
+}
+entity LikeIdea{
+like Integer required
+
+
+
+}
+
+
+ entity Entidad {
+ entidad String required
+ 
+ }
+
+entity Reto {
+
+	reto String required
+    descripcion TextBlob required
+    motivacion String required
+    fechaInicio LocalDate required
+    fechaFin LocalDate required
+    activo Boolean
+    validado Boolean
+    urlFoto ImageBlob
+    visto Integer
+}
+entity Ecosistema{
+
+nombre String required maxlength(100)
+tematica String required
+activo Boolean
+logoUrl ImageBlob
+ranking Integer
+usuariosCant Integer
+retosCant Integer
+ideasCant Integer
+
+
+}
+ entity RedesSociales{
+ redesUrl String required
+ logoUrl ImageBlob required
+ 
+ 
+ 
+ }
+
+
+
+
+entity Componentes{
+componente String required
+descripcion TextBlob required
+documentoUrl Blob
+activo Boolean 
+
+
+
+}
+entity EcosistemaRol{
+ecosistemaRol String required
+descripcion TextBlob required
+
+
+
+}
+entity EcosistemaPeticiones{
+ motivo String required
+ fechaPeticion LocalDate required
+ aprobada Boolean
+}
+entity Proyectos{
+nombre String required
+descripcion TextBlob required
+autor String required
+necesidad String required
+fechaInicio LocalDate required
+fechaFin LocalDate required
+logoUrl ImageBlob
+
+}
+
+entity TipoProyecto{
+tipoProyecto String required
+
+
+}
+entity Participantes{
+ nombre String required
+ telefono String
+ correo String required
+
+
+
+}
+entity Sector{
+ sector String required 
+ }
+ entity LineaInvestigacion{
+ linea String required 
+ }
+ entity Ods{
+ ods String required
+ }
+
+entity InnovacionRacionalizacion{
+tematica String required
+fecha LocalDate required
+vp Integer required
+autores String required
+numeroIdentidad Long required
+observacion TextBlob
+aprobada Boolean
+publico Boolean required
+
+
+}
+
+entity UsuarioEcosistema{
+
+fechaIngreso LocalDate required
+bloqueado Boolean
+
+
+}
+ entity CategoriaUser{
+ 
+ categoriaUser String required
+ 
+ }
+
+entity Noticias{
+titulo String required
+descripcion TextBlob required
+urlFoto ImageBlob
+publica Boolean
+publicar Boolean
+fechaCreada LocalDate
+
+}
+entity TipoNoticia{
+tipoNoticia String required
+
+
+}
+ entity Contacto{
+ 
+ nombre String required
+ telefono String required
+ correo String required
+ mensaje String required
+ fechaContacto LocalDate
+ 
+ 
+ }
+entity TipoContacto{
+tipoContacto String required
+}
+
+entity Servicios{
+  servicio String required
+  descripcion TextBlob required
+  publicado Boolean
+  foto ImageBlob
+
+
+}
+entity ContactoServicio{
+
+ nombre String required
+ telefono String required
+ correo String required
+ mensaje String required
+ fechaContacto LocalDate
+
+
+}
+entity ChangeMacker{
+foto ImageBlob required
+nombre String required
+tema String required
+descripcion TextBlob required
+}
+
+entity ContactoChangeMacker{
+
+ nombre String required
+ telefono String required
+ correo String required
+ mensaje String required
+ fechaContacto LocalDate
+
+
+}
+
+
+// Set pagination options
+
+paginate Idea, Reto, Proyectos, InnovacionRacionalizacion, Proyectos, Noticias with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+relationship OneToMany {    
+    
+       Ecosistema{reto} to Reto{ecosistema(nombre)}
+       EcosistemaRol{ecosistema} to Ecosistema{ecosistemaRol(ecosistemaRol)}
+       Ecosistema{proyectos} to Proyectos{ecosistema(nombre)}
+       Ecosistema {ecosistemaPeticiones} to EcosistemaPeticiones{ecosistema(nombre)}
+       Ecosistema{noticias} to Noticias{ecosistema(nombre)}
+       Ecosistema{redesUrl} to RedesSociales{ecosistema}
+       
+       
+       
+       
+       Reto{idea} to Idea{reto(reto)}       
+       TipoIdea{idea} to Idea{tipoIdea(tipoIdea)}
+       TipoIdea{innovacionRacionalizacion} to InnovacionRacionalizacion{tipoIdea(tipoIdea)}
+       TipoNoticia {noticias} to Noticias{tipoNoticia(tipoNoticia)}      
+       Proyectos{partipantes} to Participantes{proyectos}  
+       TipoProyecto {proyectos} to Proyectos {tipoProyecto(tipoProyecto)}
+       Entidad {idea} to Idea{entidad(entidad)}
+      
+       
+       Idea{comentario} to ComenetariosIdea{idea(titulo)}
+       Idea {like} to LikeIdea{idea(titulo)}
+       
+       
+       
+       
+   
+        
+        
+}
+relationship ManyToOne{
+
+   UsuarioEcosistema{user(login)} to User
+   UsuarioEcosistema{categoriaUser(categoriaUser)} to CategoriaUser{usurioecosistema}
+    
+   Ecosistema {user(login)} to User
+   Componentes{ecosistema(nombre)} to Ecosistema{componentes(componente)}     
+  
+    Reto{user(login)} to User
+   
+   Idea {user(login)} to User
+   
+   Proyectos{user(login)} to User
+   EcosistemaPeticiones{user(login)} to User  
+   Noticias {user(login)} to User
+   Contacto {tipoContacto(tipoContacto)} to TipoContacto
+   ComenetariosIdea {user(login)} to User
+   LikeIdea {user(login)} to User
+ 
+   ContactoServicio { servicios(servicio)} to   Servicios  
+   ContactoChangeMacker{ changeMacker (nombre)} to ChangeMacker
+
+}
+relationship ManyToMany{
+
+    
+      UsuarioEcosistema{ecosistema(nombre)}  to Ecosistema{usurioecosistema}  
+      Proyectos {sector(sector)} to Sector{proyectos}
+      Proyectos {lineaInvestigacion(linea)} to LineaInvestigacion{proyectos}
+      Proyectos{ods(ods)} to Ods{proyectos}
+
+ 
+ }
+
+ 

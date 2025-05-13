@@ -1,0 +1,9 @@
+.innova {
+  background-image: url('../../../content/images/hub.png');
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 100px;
+  background-size: contain;
+  border-radius: 10px;
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Idea.
+    -->
+    <changeSet id="20221016165805-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="idea"
+                                 constraintName="fk_idea__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="reto_id"
+                                 baseTableName="idea"
+                                 constraintName="fk_idea__reto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reto"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_idea_id"
+                                 baseTableName="idea"
+                                 constraintName="fk_idea__tipo_idea_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_idea"/>
+
+        <addForeignKeyConstraint baseColumnNames="entidad_id"
+                                 baseTableName="idea"
+                                 constraintName="fk_idea__entidad_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="entidad"/>
+    </changeSet>
+</databaseChangeLog>

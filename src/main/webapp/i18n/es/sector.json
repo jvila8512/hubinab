@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "sector": {
+      "home": {
+        "title": "Sectores",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Sector",
+        "createOrEditLabel": "Crear o editar Sector",
+        "notFound": "Ningún Sectors encontrado"
+      },
+      "created": "Un nuevo Sector ha sido creado",
+      "updated": "Un Sector ha sido actualizado ",
+      "deleted": "Un Sector ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Sector?"
+      },
+      "detail": {
+        "title": "Sector"
+      },
+      "id": "ID",
+      "sector": "Sector",
+      "proyectos": "Proyectos"
+    }
+  }
+}

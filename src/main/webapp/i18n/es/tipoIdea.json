@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "tipoIdea": {
+      "home": {
+        "title": "Tipo de Ideas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tipo Idea",
+        "createOrEditLabel": "Crear o editar Tipo Idea",
+        "notFound": "Ningún Tipo Ideas ha sido encontrado"
+      },
+      "created": "Un nuevo Tipo Idea ha sido creado ",
+      "updated": "Un Tipo Idea ha sido actualizado",
+      "deleted": "Un Tipo Idea ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Idea ?"
+      },
+      "detail": {
+        "title": "Tipo Idea"
+      },
+      "id": "ID",
+      "tipoIdea": "Tipo Idea",
+      "idea": "Idea",
+      "innovacionRacionalizacion": "Innovación"
+    }
+  }
+}

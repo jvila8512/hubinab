@@ -1,0 +1,36 @@
+{
+  "jhipsterApp": {
+    "reto": {
+      "home": {
+        "title": "Retos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Reto",
+        "createOrEditLabel": "Crear o editar Reto",
+        "notFound": "Ningún Retos encontrado"
+      },
+      "created": "Un nuevo Reto ha sido creado ",
+      "updated": "Un Reto ha sido actualizado ",
+      "deleted": "Un Reto ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Reto?"
+      },
+      "detail": {
+        "title": "Reto"
+      },
+      "id": "ID",
+      "reto": "Reto",
+      "descripcion": "Descripción",
+      "motivacion": "Motivación",
+      "fechaInicio": "Fecha Inicio",
+      "fechaFin": "Fecha Fin",
+      "activo": "Activo",
+      "publico": "Público (Todas las ideas seran públicas)",
+      "validado": "Validar Fechas por la Plataforma",
+      "urlFoto": "Imagen",
+      "visto": "Visto",
+      "idea": "Idea",
+      "user": "Usuario",
+      "ecosistema": "Ecosistema"
+    }
+  }
+}

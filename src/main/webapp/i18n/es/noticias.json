@@ -1,0 +1,32 @@
+{
+  "jhipsterApp": {
+    "noticias": {
+      "home": {
+        "title": "Noticias",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Noticia",
+        "createOrEditLabel": "Crear o Editar Noticias",
+        "notFound": "Ningún Noticias encontrado"
+      },
+      "created": "Una nueva Noticia ha sido creada",
+      "updated": "Una Noticia ha sido actualizada",
+      "deleted": "Una Noticia ha sido eliminada",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar la Noticia {{ id }}?"
+      },
+      "detail": {
+        "title": "Noticias"
+      },
+      "id": "ID",
+      "titulo": "Título",
+      "descripcion": "Descripción",
+      "urlFoto": "Imagen",
+      "publica": "Publica(La pueden ver los usuarios)",
+      "publicar": "Publicar en página inicial",
+      "fechaCreada": "Fecha Creada",
+      "user": "User",
+      "ecosistema": "Ecosistema",
+      "tipoNoticia": "Tipo Noticia"
+    }
+  }
+}

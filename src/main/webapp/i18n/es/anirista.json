@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "anirista": {
+      "home": {
+        "title": "Aniristas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Anirista",
+        "createOrEditLabel": "Crear o editar Anirista",
+        "notFound": "Ningún Aniristas encontrado"
+      },
+      "created": "Un nuevo Anirista ha sido creado",
+      "updated": "Un Anirista ha sido actualizado",
+      "deleted": "Un Anirista ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar el Anirista {{ id }}?"
+      },
+      "detail": {
+        "title": "Anirista"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "fechaEntrada": "Fecha Entrada",
+      "descripcion": "Descripción",
+      "ecosistema": "Ecosistema"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "jhipsterApp": {
+    "file": {
+      "created": "Se inserto el archivo {{ param }} con éxito"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "jhipsterApp": {
+    "tramite": {
+      "home": {
+        "title": "Tramites",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tramite",
+        "createOrEditLabel": "Crear o editar Tramite",
+        "notFound": "Ningún Tramites encontrado"
+      },
+      "created": "Un nuevo Tramite ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tramite ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tramite ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tramite {{ id }}?"
+      },
+      "detail": {
+        "title": "Tramite"
+      },
+      "id": "ID",
+      "inscripcion": "Inscripcion",
+      "pruebaExperimental": "Prueba Experimental",
+      "exmanenEvaluacion": "Exmanen Evaluacion",
+      "dictamen": "Dictamen",
+      "concesion": "Concesion",
+      "denegado": "Denegado",
+      "reclamacion": "Reclamacion",
+      "anulacion": "Anulacion",
+      "fechaNotificacion": "Fecha Notificacion",
+      "fecaCertificado": "Feca Certificado",
+      "observacion": "Observacion"
+    }
+  }
+}

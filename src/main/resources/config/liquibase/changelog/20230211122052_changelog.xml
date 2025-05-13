@@ -1,0 +1,655 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="Javy (generated)" id="1676118387933-38">
+        <createTable tableName="categoria_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="categoria_userPK"/>
+            </column>
+            <column name="categoria_user" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-39">
+        <createTable tableName="change_macker">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="change_mackerPK"/>
+            </column>
+            <column name="descripcion" type="LONGTEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foto" type="LONGBLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foto_content_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tema" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-40">
+        <createTable tableName="comenetarios_idea">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="comenetarios_ideaPK"/>
+            </column>
+            <column name="comentario" type="LONGTEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="idea_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-41">
+        <createTable tableName="contacto_change_macker">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="contacto_change_mackerPK"/>
+            </column>
+            <column name="correo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fecha_contacto" type="date"/>
+            <column name="mensaje" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefono" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="change_macker_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-42">
+        <createTable tableName="contacto_servicio">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="contacto_servicioPK"/>
+            </column>
+            <column name="correo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fecha_contacto" type="date"/>
+            <column name="mensaje" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefono" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="servicios_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-43">
+        <createTable tableName="entidad">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="entidadPK"/>
+            </column>
+            <column name="entidad" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-44">
+        <createTable tableName="like_idea">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="like_ideaPK"/>
+            </column>
+            <column name="jhi_like" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="idea_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-45">
+        <createTable tableName="linea_investigacion">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="linea_investigacionPK"/>
+            </column>
+            <column name="linea" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-46">
+        <createTable tableName="ods">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="odsPK"/>
+            </column>
+            <column name="ods" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-47">
+        <createTable tableName="redes_sociales">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="redes_socialesPK"/>
+            </column>
+            <column name="logo_url" type="LONGBLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="logo_url_content_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="redes_url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ecosistema_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-48">
+        <createTable tableName="rel_proyectos__linea_investigacion">
+            <column name="proyectos_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="linea_investigacion_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-49">
+        <createTable tableName="rel_proyectos__ods">
+            <column name="proyectos_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ods_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-50">
+        <createTable tableName="rel_proyectos__sector">
+            <column name="proyectos_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="sector_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-51">
+        <createTable tableName="rel_usuario_ecosistema__ecosistema">
+            <column name="usuario_ecosistema_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ecosistema_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-52">
+        <createTable tableName="sector">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sectorPK"/>
+            </column>
+            <column name="sector" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-53">
+        <createTable tableName="servicios">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="serviciosPK"/>
+            </column>
+            <column name="descripcion" type="LONGTEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foto" type="LONGBLOB"/>
+            <column name="foto_content_type" type="VARCHAR(255)"/>
+            <column name="publicado" type="BIT"/>
+            <column name="servicio" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-54">
+        <createTable tableName="tipo_proyecto">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="tipo_proyectoPK"/>
+            </column>
+            <column name="tipo_proyecto" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-55">
+        <addColumn tableName="idea">
+            <column name="aceptada" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-56">
+        <addColumn tableName="usuario_ecosistema">
+            <column name="bloqueado" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-57">
+        <addColumn tableName="usuario_ecosistema">
+            <column name="categoria_user_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-58">
+        <addColumn tableName="participantes">
+            <column name="correo" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-59">
+        <addColumn tableName="noticias">
+            <column name="descripcion" type="longtext">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-60">
+        <addColumn tableName="componentes">
+            <column name="documento_url_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-61">
+        <addColumn tableName="componentes">
+            <column name="ecosistema_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-62">
+        <addColumn tableName="idea">
+            <column name="entidad_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-63">
+        <addColumn tableName="contacto">
+            <column name="fecha_contacto" type="date"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-64">
+        <addColumn tableName="noticias">
+            <column name="fecha_creada" type="date"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-65">
+        <addColumn tableName="usuario_ecosistema">
+            <column name="fecha_ingreso" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-66">
+        <addColumn tableName="idea">
+            <column name="fecha_inscripcion" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-67">
+        <addColumn tableName="idea">
+            <column name="foto" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-68">
+        <addColumn tableName="idea">
+            <column name="foto_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-69">
+        <addColumn tableName="ecosistema">
+            <column name="ideas_cant" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-70">
+        <addColumn tableName="ecosistema">
+            <column name="logo_url_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-71">
+        <addColumn tableName="proyectos">
+            <column name="logo_url_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-72">
+        <addColumn tableName="participantes">
+            <column name="nombre" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-73">
+        <addColumn tableName="participantes">
+            <column name="proyectos_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-74">
+        <addColumn tableName="noticias">
+            <column name="publica" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-75">
+        <addColumn tableName="noticias">
+            <column name="publicar" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-76">
+        <addColumn tableName="ecosistema">
+            <column name="ranking" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-77">
+        <addColumn tableName="ecosistema">
+            <column name="retos_cant" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-78">
+        <addColumn tableName="participantes">
+            <column name="telefono" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-79">
+        <addColumn tableName="proyectos">
+            <column name="tipo_proyecto_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-80">
+        <addColumn tableName="reto">
+            <column name="url_foto" type="longblob"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-81">
+        <addColumn tableName="noticias">
+            <column name="url_foto_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-82">
+        <addColumn tableName="reto">
+            <column name="url_foto_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-83">
+        <addColumn tableName="ecosistema">
+            <column name="usuarios_cant" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-84">
+        <addColumn tableName="reto">
+            <column name="validado" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-85">
+        <addColumn tableName="idea">
+            <column name="visto" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-86">
+        <addColumn tableName="reto">
+            <column name="visto" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-87">
+        <addForeignKeyConstraint baseColumnNames="linea_investigacion_id" baseTableName="rel_proyectos__linea_investigacion" constraintName="FK26sl2p05y87rbrypwpan4a6jb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="linea_investigacion" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-88">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="comenetarios_idea" constraintName="FK2h71svye3y02dg1cdfj3bcuvp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-89">
+        <addForeignKeyConstraint baseColumnNames="proyectos_id" baseTableName="rel_proyectos__sector" constraintName="FK4901n6ov916x93p440cir925u" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proyectos" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-90">
+        <addForeignKeyConstraint baseColumnNames="ecosistema_id" baseTableName="rel_usuario_ecosistema__ecosistema" constraintName="FK5bfr624rtydkgla4g1m9cadfu" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ecosistema" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-91">
+        <addForeignKeyConstraint baseColumnNames="entidad_id" baseTableName="idea" constraintName="FK6bti9rm5gc5s1kbwy7cq42p73" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="entidad" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-92">
+        <addForeignKeyConstraint baseColumnNames="sector_id" baseTableName="rel_proyectos__sector" constraintName="FK7fgs20w2dihhxrwna9tlu0wsv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sector" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-93">
+        <addForeignKeyConstraint baseColumnNames="servicios_id" baseTableName="contacto_servicio" constraintName="FK7ypurwclvxgwg6tlxgm1j15f9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="servicios" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-94">
+        <addForeignKeyConstraint baseColumnNames="usuario_ecosistema_id" baseTableName="rel_usuario_ecosistema__ecosistema" constraintName="FK9nlyuolq4yjyuye1vqc5n303o" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="usuario_ecosistema" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-95">
+        <addForeignKeyConstraint baseColumnNames="proyectos_id" baseTableName="rel_proyectos__linea_investigacion" constraintName="FKa6rqxqqqe5gu4d26rdeg0fw7n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proyectos" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-96">
+        <addForeignKeyConstraint baseColumnNames="proyectos_id" baseTableName="participantes" constraintName="FKavowhor2k6nmqn1kgirf3am0c" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proyectos" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-97">
+        <addForeignKeyConstraint baseColumnNames="ods_id" baseTableName="rel_proyectos__ods" constraintName="FKbwxdrsboqis43r92h53qewc8v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ods" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-98">
+        <addForeignKeyConstraint baseColumnNames="ecosistema_id" baseTableName="redes_sociales" constraintName="FKc2braywayrpfo7a1odbvlthig" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ecosistema" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-99">
+        <addForeignKeyConstraint baseColumnNames="tipo_proyecto_id" baseTableName="proyectos" constraintName="FKiqojlmwm8f3labmg7rhhb9rr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="tipo_proyecto" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-100">
+        <addForeignKeyConstraint baseColumnNames="categoria_user_id" baseTableName="usuario_ecosistema" constraintName="FKk149duankrvkc1qiuj432gb1a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria_user" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-101">
+        <addForeignKeyConstraint baseColumnNames="proyectos_id" baseTableName="rel_proyectos__ods" constraintName="FKkd9d89yhqc0wxbub50rerh20b" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proyectos" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-102">
+        <addForeignKeyConstraint baseColumnNames="idea_id" baseTableName="comenetarios_idea" constraintName="FKnlngdydae85vlho9x5m3pcuda" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="idea" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-103">
+        <addForeignKeyConstraint baseColumnNames="ecosistema_id" baseTableName="componentes" constraintName="FKocq6a921iun9a9sg31ug62hk1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ecosistema" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-104">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="like_idea" constraintName="FKqio05iey7a1bowloxmttsa0qu" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-105">
+        <addForeignKeyConstraint baseColumnNames="idea_id" baseTableName="like_idea" constraintName="FKr6l0qst98ayfwxo3ry55vigt9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="idea" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-106">
+        <addForeignKeyConstraint baseColumnNames="change_macker_id" baseTableName="contacto_change_macker" constraintName="FKreghu046d69a6uyt2tc9nvdvg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="change_macker" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-107">
+        <dropForeignKeyConstraint baseTableName="innovacion_racionalizacion" constraintName="fk_innovacion_racionalizacion__ecosistema_id"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-108">
+        <dropForeignKeyConstraint baseTableName="innovacion_racionalizacion" constraintName="fk_innovacion_racionalizacion__tramite_id"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-109">
+        <dropForeignKeyConstraint baseTableName="participantes" constraintName="fk_participantes__user_id"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-110">
+        <dropForeignKeyConstraint baseTableName="rel_participantes__proyectos" constraintName="fk_rel_participantes__proyectos__participantes_id"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-111">
+        <dropForeignKeyConstraint baseTableName="rel_participantes__proyectos" constraintName="fk_rel_participantes__proyectos__proyectos_id"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-112">
+        <dropForeignKeyConstraint baseTableName="usuario_ecosistema" constraintName="fk_usuario_ecosistema__ecosistema_id"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-113">
+        <dropUniqueConstraint constraintName="ux_contacto__tipo_contacto_id" tableName="contacto"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-114">
+        <dropUniqueConstraint constraintName="ux_ecosistema__user_id" tableName="ecosistema"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-115">
+        <dropUniqueConstraint constraintName="ux_ecosistema_peticiones__user_id" tableName="ecosistema_peticiones"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-116">
+        <dropUniqueConstraint constraintName="ux_idea__user_id" tableName="idea"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-117">
+        <dropUniqueConstraint constraintName="ux_innovacion_racionalizacion__tramite_id" tableName="innovacion_racionalizacion"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-118">
+        <dropUniqueConstraint constraintName="ux_noticias__user_id" tableName="noticias"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-119">
+        <dropUniqueConstraint constraintName="ux_participantes__user_id" tableName="participantes"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-120">
+        <dropUniqueConstraint constraintName="ux_proyectos__user_id" tableName="proyectos"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-121">
+        <dropUniqueConstraint constraintName="ux_reto__user_id" tableName="reto"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-122">
+        <dropUniqueConstraint constraintName="ux_usuario_ecosistema__user_id" tableName="usuario_ecosistema"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-123">
+        <dropTable tableName="rel_participantes__proyectos"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-124">
+        <dropColumn columnName="anir" tableName="innovacion_racionalizacion"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-125">
+        <dropColumn columnName="btj" tableName="innovacion_racionalizacion"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-126">
+        <dropColumn columnName="clasificacion" tableName="reto"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-127">
+        <dropColumn columnName="decripcion" tableName="noticias"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-128">
+        <dropColumn columnName="ecosistema_id" tableName="innovacion_racionalizacion"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-129">
+        <dropColumn columnName="ecosistema_id" tableName="usuario_ecosistema"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-130">
+        <dropColumn columnName="entidad" tableName="idea"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-131">
+        <dropColumn columnName="fecha_incripcion" tableName="idea"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-132">
+        <dropColumn columnName="nombre" tableName="usuario_ecosistema"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-133">
+        <dropColumn columnName="ods" tableName="proyectos"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-134">
+        <dropColumn columnName="sector" tableName="proyectos"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-135">
+        <dropColumn columnName="tramite_id" tableName="innovacion_racionalizacion"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-136">
+        <dropColumn columnName="user_id" tableName="participantes"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-1">
+        <dropDefaultValue columnDataType="varchar(20)" columnName="activation_key" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-2">
+        <dropNotNullConstraint columnDataType="boolean" columnName="activo" tableName="componentes"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-3">
+        <dropDefaultValue columnDataType="boolean" columnName="activo" tableName="ecosistema"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-4">
+        <dropDefaultValue columnDataType="boolean" columnName="activo" tableName="reto"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-5">
+        <dropDefaultValue columnDataType="boolean" columnName="anulacion" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-6">
+        <dropDefaultValue columnDataType="boolean" columnName="aprobada" tableName="ecosistema_peticiones"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-7">
+        <dropDefaultValue columnDataType="boolean" columnName="aprobada" tableName="innovacion_racionalizacion"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-8">
+        <dropDefaultValue columnDataType="boolean" columnName="concesion" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-9">
+        <dropDefaultValue columnDataType="boolean" columnName="denegado" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-10">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="dictamen" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-11">
+        <dropNotNullConstraint columnDataType="blob" columnName="documento_url" tableName="componentes"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-12">
+        <dropDefaultValue columnDataType="varchar(254)" columnName="email" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-13">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="exmanen_evaluacion" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-14">
+        <addNotNullConstraint columnDataType="date" columnName="fecha_fin" tableName="proyectos" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-15">
+        <addNotNullConstraint columnDataType="date" columnName="fecha_fin" tableName="reto" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-16">
+        <addNotNullConstraint columnDataType="date" columnName="fecha_inicio" tableName="proyectos" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-17">
+        <addNotNullConstraint columnDataType="date" columnName="fecha_peticion" tableName="ecosistema_peticiones" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-18">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="first_name" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-19">
+        <dropDefaultValue columnDataType="varchar(256)" columnName="image_url" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-20">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="inscripcion" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-21">
+        <dropDefaultValue columnDataType="varchar(10)" columnName="lang_key" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-22">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="last_modified_by" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-23">
+        <dropDefaultValue columnDataType="varchar(50)" columnName="last_name" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-24">
+        <dropDefaultValue columnDataType="blob" columnName="logo_url" tableName="ecosistema"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-25">
+        <dropDefaultValue columnDataType="blob" columnName="logo_url" tableName="proyectos"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-26">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="motivo" tableName="ecosistema_peticiones" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-27">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="motivo" tableName="ecosistema_peticiones"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-28">
+        <dropDefaultValue columnDataType="clob" columnName="observacion" tableName="innovacion_racionalizacion"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-29">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="observacion" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-30">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="prueba_experimental" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-31">
+        <dropDefaultValue columnDataType="boolean" columnName="reclamacion" tableName="tramite"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-32">
+        <dropDefaultValue columnDataType="varchar(20)" columnName="reset_key" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-33">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="tipo_idea" tableName="tipo_idea" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-34">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="tipo_idea" tableName="tipo_idea"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-35">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="tipo_noticia" tableName="tipo_noticia" validate="true"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-36">
+        <dropDefaultValue columnDataType="varchar(255)" columnName="tipo_noticia" tableName="tipo_noticia"/>
+    </changeSet>
+    <changeSet author="Javy (generated)" id="1676118387933-37">
+        <dropDefaultValue columnDataType="blob" columnName="url_foto" tableName="noticias"/>
+    </changeSet>
+</databaseChangeLog>

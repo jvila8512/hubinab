@@ -1,0 +1,11 @@
+id;fecha_ingreso;bloqueado
+1;2022-10-16;true
+2;2022-10-15;false
+3;2022-10-16;true
+4;2022-10-16;false
+5;2022-10-15;false
+6;2022-10-16;false
+7;2022-10-16;true
+8;2022-10-16;false
+9;2022-10-16;true
+10;2022-10-16;false

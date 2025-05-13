@@ -1,0 +1,11 @@
+id;motivo;fecha_peticion;aprobada
+1;UIC-Franc Amarillo dedicada;2022-10-16;false
+2;circuit;2022-10-15;true
+3;Verde Ejecutivo;2022-10-16;true
+4;transmit;2022-10-16;false
+5;Dollar Hormigon;2022-10-15;true
+6;Baleares Mónaco de;2022-10-16;true
+7;Metal Pantalones;2022-10-16;false
+8;XSS B2B;2022-10-16;false
+9;Andalucía;2022-10-16;false
+10;Barranco back-end;2022-10-16;true

@@ -1,0 +1,34 @@
+{
+  "applications": "*",
+  "changelogDate": "20221130104625",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "redes_sociales",
+  "fields": [
+    {
+      "fieldName": "redesUrl",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "logoUrl",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "RedesSociales",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ecosistema",
+      "otherEntityRelationshipName": "redesUrl",
+      "relationshipName": "ecosistema",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

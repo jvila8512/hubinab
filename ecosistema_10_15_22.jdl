@@ -1,0 +1,174 @@
+
+entity TipoIdea {
+	tipoIdea String
+}
+entity Idea {
+	
+    numeroRegistro Integer required,
+    entidad String required,
+   titulo String required,
+   descripcion String required,
+   autor String required,
+   fechaIncripcion LocalDate
+}
+
+entity Reto {
+	reto String required
+    descripcion String required
+    motivacion String required
+    fechaInicio LocalDate required
+    fechaFin LocalDate
+    clasificacion String required
+    activo Boolean
+}
+entity Ecosistema{
+nombre String required maxlength(100)
+tematica String required
+activo Boolean
+logoUrl String
+
+
+}
+entity Componentes{
+componente String required
+descripcion String required
+documentoUrl String
+
+
+
+}
+entity EcosistemaRol{
+ecosistemaRol String required
+descripcion String required
+
+
+
+}
+entity EcosistemaPeticiones{
+ motivo String
+ fechaPeticion LocalDate
+ aprobada Boolean
+}
+entity Proyectos{
+nombre String required
+descripcion String required
+autor String required
+necesidad String required
+sector String required
+ods String required
+fechaInicio LocalDate 
+fechaFin LocalDate
+logoUrl String
+
+}
+entity Participantes{
+
+
+
+}
+entity InnovacionRacionalizacion{
+tematica String required
+fecha LocalDate required
+vp Integer required
+autores String required
+anir Boolean
+btj Boolean
+numeroIdentidad Long required
+observacion String
+aprobada Boolean
+publico Boolean required
+
+
+}
+entity Tramite{
+inscripcion String
+pruebaExperimental String
+exmanenEvaluacion String
+dictamen String
+concesion Boolean
+denegado Boolean
+reclamacion Boolean
+anulacion Boolean
+fechaNotificacion LocalDate
+fecaCertificado LocalDate
+observacion String
+
+}
+entity UsuarioEcosistema{
+
+nombre String required maxlength(100)
+
+
+}
+
+entity Noticias{
+titulo String required
+decripcion String required
+urlFoto String
+}
+entity TipoNoticia{
+tipoNoticia String
+
+
+}
+ entity Contacto{
+ 
+ nombre String required
+ telefono String required
+ correo String required
+ mensaje String required
+ 
+ 
+ }
+entity TipoContacto{
+tipoContacto String required
+}
+
+// Set pagination options
+
+paginate Idea, Reto, Proyectos, InnovacionRacionalizacion with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+relationship OneToMany {
+    
+     
+       Ecosistema{usurioecosistema} to UsuarioEcosistema{ecosistema(nombre)}
+       Ecosistema{reto} to Reto{ecosistema(nombre)}
+       Ecosistema{componente} to Componentes{ecosistema(nombre)}
+       EcosistemaRol{ecosistema} to Ecosistema{ecosistemaRol(ecosistemaRol)}
+       Ecosistema{proyectos} to Proyectos{ecosistema(nombre)}
+       Ecosistema {ecosistemaPeticiones} to EcosistemaPeticiones{ecosistema}
+       Ecosistema{innovacionRacionalizacion} to InnovacionRacionalizacion{Ecosistema(nombre)}
+       Ecosistema{noticias} to Noticias{ecosistema(nombre)}
+       Reto{idea} to Idea{reto(reto)}
+       TipoIdea{idea} to Idea{tipoIdea(tipoIdea)}
+       TipoIdea{innovacionRacionalizacion} to InnovacionRacionalizacion{tipoIdea(tipoIdea)}
+      TipoNoticia {noticias} to Noticias{tipoNoticia(tipoNoticia)}
+}
+relationship ManyToMany{
+ Participantes{proyectos} to Proyectos{partipantes}
+ }
+relationship OneToOne{
+ 
+   UsuarioEcosistema{user(login)} to User
+   InnovacionRacionalizacion{tramite(aprobada)} to Tramite
+   Ecosistema {user(login)} to User
+   Reto{user(login)} to User
+     Idea{user(login)} to User
+  Proyectos{user(login)} to User
+  EcosistemaPeticiones{user(login)} to User
+  Participantes{user(login)} to User
+  Noticias {user(login)} to User
+  Contacto {tipoContacto(tipoContacto)} to TipoContacto
+  
+
+
+}
+ 
+
+

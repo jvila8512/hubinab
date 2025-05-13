@@ -1,0 +1,26 @@
+/* estadoTemplate.module.css */
+.contentContainer {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  padding: 8px 0;
+}
+
+.contentItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  padding: 4px 0;
+}
+
+.bulletPoint {
+  color: #4a6baf;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.noContent {
+  color: #999;
+  font-style: italic;
+}

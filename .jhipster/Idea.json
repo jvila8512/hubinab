@@ -1,0 +1,100 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165805",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "idea",
+  "fields": [
+    {
+      "fieldName": "numeroRegistro",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "titulo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "autor",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaInscripcion",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "visto",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "foto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "aceptada",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "publica",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Idea",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "comenetariosIdea",
+      "otherEntityRelationshipName": "idea",
+      "relationshipName": "comentario",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "likeIdea",
+      "otherEntityRelationshipName": "idea",
+      "relationshipName": "like",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "idea",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "reto",
+      "otherEntityName": "reto",
+      "otherEntityRelationshipName": "idea",
+      "relationshipName": "reto",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "tipoIdea",
+      "otherEntityName": "tipoIdea",
+      "otherEntityRelationshipName": "idea",
+      "relationshipName": "tipoIdea",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "entidad",
+      "otherEntityName": "entidad",
+      "otherEntityRelationshipName": "idea",
+      "relationshipName": "entidad",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "entidad": {
+      "home": {
+        "title": "Entidades",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Entidad",
+        "createOrEditLabel": "Crear o editar Entidad",
+        "notFound": "Ninguna Entidad encontrada"
+      },
+      "created": "Una nueva Entidad ha sido creada",
+      "updated": "Una Entidad ha sido actualizada",
+      "deleted": "Una Entidad ha sido eliminada",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Entidad?"
+      },
+      "detail": {
+        "title": "Entidad"
+      },
+      "id": "ID",
+      "entidad": "Entidad",
+      "idea": "Idea"
+    }
+  }
+}

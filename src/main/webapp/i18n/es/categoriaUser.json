@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "categoriaUser": {
+      "home": {
+        "title": "Categoria Usuario",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Categoria Usuario",
+        "createOrEditLabel": "Crear o editar Categoria Usuario",
+        "notFound": "Ninguna Categoria ha sido encontrada"
+      },
+      "created": "Una nueva Categoria ha sido creada",
+      "updated": "Una Categoria ha sido actualizada ",
+      "deleted": "Una Categoria  ha sido eliminada",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar la Categoria ?"
+      },
+      "detail": {
+        "title": "Categoria User"
+      },
+      "id": "ID",
+      "categoriaUser": "Categoria Usuario",
+      "usurioecosistema": "Usuario"
+    }
+  }
+}

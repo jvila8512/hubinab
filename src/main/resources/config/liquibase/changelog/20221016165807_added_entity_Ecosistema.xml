@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Ecosistema.
+    -->
+    <changeSet id="20221016165807-1" author="jhipster">
+        <createTable tableName="ecosistema">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nombre" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="tematica" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="activo" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="logo_url" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="logo_url_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ranking" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="usuarios_cant" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="retos_cant" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="ideas_cant" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="ecosistema_rol_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20221016165807-1-relations" author="jhipster">
+
+        <createTable tableName="rel_ecosistema__user">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ecosistema_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="ecosistema_id, user_id" tableName="rel_ecosistema__user"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20221016165807-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/ecosistema.csv"
+                  separator=";"
+                  tableName="ecosistema"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="nombre" type="string"/>
+            <column name="tematica" type="string"/>
+            <column name="activo" type="boolean"/>
+            <column name="logo_url" type="blob"/>
+            <column name="logo_url_content_type" type="string"/>
+            <column name="ranking" type="numeric"/>
+            <column name="usuarios_cant" type="numeric"/>
+            <column name="retos_cant" type="numeric"/>
+            <column name="ideas_cant" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

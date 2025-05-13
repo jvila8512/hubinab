@@ -1,0 +1,34 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165810",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "ecosistema_rol",
+  "fields": [
+    {
+      "fieldName": "ecosistemaRol",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "EcosistemaRol",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ecosistema",
+      "otherEntityRelationshipName": "ecosistemaRol",
+      "relationshipName": "ecosistema",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

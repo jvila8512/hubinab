@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "titulo": "Colaborativos y participativos",
+    "objetivo": "Impulsar la competitividad en los actores económicos y el talento innovador es un rol esencial del servicio",
+    "descripcion": "El uso de estos servicios contribuyen a que los objetivos se cumplan en menor tiempo y  coste; así como a disminuir la Brecha de innovación.",
+    "foto": "servicios-colaborativos"
+  },
+  {
+    "id": "2",
+    "titulo": "Entrenamientos",
+    "descripcion": "El objetivo de estos servicios es la de eliminar la brecha en el conocimiento tecnológico,y proveer de habilidades al talento y organizaciones que permitan su rápida adaptabilidad al mercado.",
+    "objetivo": "Potenciar las habilidades del innovador y actores económicos, hacia ",
+    "foto": "servicios-entrenamiento"
+  },
+  {
+    "id": "3",
+    "titulo": "Branding",
+    "objetivo": "La marca y la innovación",
+    "descripcion": "Servicios para fortalecer el posicionamiento de las organizaciones  innovadoras.",
+    "foto": "servicios-branding"
+  },
+  {
+    "id": "4",
+    "titulo": "Monetización",
+    "objetivo": "Premios, insignias, reconocimientos, por el ADN innovador.",
+    "descripcion": "Uso de herramientas para el fortalecimiento de los ODS, desde modelos de participación y colaboración.",
+    "foto": "servicios-monetizacion"
+  }
+]

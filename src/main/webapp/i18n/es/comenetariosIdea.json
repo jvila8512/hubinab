@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "comenetariosIdea": {
+      "home": {
+        "title": "Comentarios Ideas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Comentarios Idea",
+        "createOrEditLabel": "Crear o editar Comentarios Idea",
+        "notFound": "Ningún Comentario ha sido encontrado"
+      },
+      "created": "Un nuevo Comentario ha sido creado",
+      "updated": "Un Comentario ha sido actualizado ",
+      "deleted": "Un Comentario ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar el Comentario?"
+      },
+      "detail": {
+        "title": "Comentarios Idea"
+      },
+      "id": "ID",
+      "comentario": "Comentario",
+      "fechaInscripcion": "Fecha Inscripción",
+      "user": "Usuario",
+      "idea": "Idea"
+    }
+  }
+}

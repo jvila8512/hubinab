@@ -1,0 +1,24 @@
+{
+  "jhipsterApp": {
+    "tipoContacto": {
+      "home": {
+        "title": "Tipo de Contactos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tipo Contacto",
+        "createOrEditLabel": "Crear o editar Tipo Contacto",
+        "notFound": "Ningún Tipo Contactos ha sido encontrado"
+      },
+      "created": "Un nuevo Tipo Contacto ha sido creado",
+      "updated": "Un Tipo Contacto ha sido actualizado",
+      "deleted": "Un Tipo Contacto ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Contacto?"
+      },
+      "detail": {
+        "title": "Tipo Contacto"
+      },
+      "id": "ID",
+      "tipoContacto": "Tipo Contacto"
+    }
+  }
+}

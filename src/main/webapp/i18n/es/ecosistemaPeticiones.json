@@ -1,0 +1,28 @@
+{
+  "jhipsterApp": {
+    "ecosistemaPeticiones": {
+      "home": {
+        "title": "Ecosistema Peticiones",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Ecosistema Peticiones",
+        "createOrEditLabel": "Crear o editar Ecosistema Peticiones",
+        "notFound": "Ningún Ecosistema Peticiones encontrado"
+      },
+      "created": "Un nuevo Ecosistema Peticiones ha sido creado",
+      "updated": "Un Ecosistema Peticiones ha sido actualizado ",
+      "deleted": "Un Ecosistema Peticiones ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Ecosistema Peticiones?"
+      },
+      "detail": {
+        "title": "Ecosistema Peticiones"
+      },
+      "id": "ID",
+      "motivo": "Motivo",
+      "fechaPeticion": "Fecha Petición",
+      "aprobada": "Aprobada",
+      "user": "Usuario",
+      "ecosistema": "Ecosistema"
+    }
+  }
+}

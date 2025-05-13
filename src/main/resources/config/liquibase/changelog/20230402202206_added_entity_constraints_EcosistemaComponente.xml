@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity EcosistemaComponente.
+    -->
+    <changeSet id="20230402202206-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="componente_id"
+                                 baseTableName="ecosistema_componente"
+                                 constraintName="fk_ecosistema_componente__componente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="componentes"/>
+
+        <addForeignKeyConstraint baseColumnNames="ecosistema_id"
+                                 baseTableName="ecosistema_componente"
+                                 constraintName="fk_ecosistema_componente__ecosistema_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ecosistema"/>
+    </changeSet>
+</databaseChangeLog>

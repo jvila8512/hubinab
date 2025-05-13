@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "lineaInvestigacion": {
+      "home": {
+        "title": "Lineas de Investigación",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Linea Investigación",
+        "createOrEditLabel": "Crear o editar Linea Investigación",
+        "notFound": "Ningún Linea Investigación se ha encontrado"
+      },
+      "created": "Una nueva Linea Investigación ha sido creada",
+      "updated": "Una Linea Investigación ha sido actualizada",
+      "deleted": "Un Linea Investigación ha sido eliminada",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Linea Investigación?"
+      },
+      "detail": {
+        "title": "Linea Investigación"
+      },
+      "id": "ID",
+      "linea": "Linea",
+      "proyectos": "Proyectos"
+    }
+  }
+}

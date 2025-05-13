@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Noticias.
+    -->
+    <changeSet id="20221016165816-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="noticias"
+                                 constraintName="fk_noticias__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="ecosistema_id"
+                                 baseTableName="noticias"
+                                 constraintName="fk_noticias__ecosistema_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ecosistema"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_noticia_id"
+                                 baseTableName="noticias"
+                                 constraintName="fk_noticias__tipo_noticia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_noticia"/>
+    </changeSet>
+</databaseChangeLog>

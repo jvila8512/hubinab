@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "servicios": {
+      "home": {
+        "title": "Servicios",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Servicio",
+        "createOrEditLabel": "Crear o editar Servicios",
+        "notFound": "Ningún Servicio ha sido encontrado"
+      },
+      "created": "Un nuevo Servicio ha sido creado",
+      "updated": "Un Servicio ha sido actualizado",
+      "deleted": "Un Servicio ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Servicio?"
+      },
+      "detail": {
+        "title": "Servicios"
+      },
+      "id": "ID",
+      "servicio": "Servicio",
+      "descripcion": "Descripción",
+      "publicado": "Publicar",
+      "foto": "Imagen"
+    }
+  }
+}

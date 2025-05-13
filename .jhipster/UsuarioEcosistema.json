@@ -1,0 +1,48 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165808",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "usuario_ecosistema",
+  "fields": [
+    {
+      "fieldName": "fechaIngreso",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "bloqueado",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UsuarioEcosistema",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "usuarioEcosistema",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "categoriaUser",
+      "otherEntityName": "categoriaUser",
+      "otherEntityRelationshipName": "usurioecosistema",
+      "relationshipName": "categoriaUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "ecosistema",
+      "otherEntityRelationshipName": "usurioecosistema",
+      "ownerSide": true,
+      "relationshipName": "ecosistema",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,16 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+.fondo {
+  background-image: url('../../../content/images/hub.png');
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain; /* La imagen de fondo se ajusta al contenedor manteniendo su relación de aspecto */
+  background-position: center; /* La imagen de fondo se posiciona en el centro */
+
+  width: 400px;
+  height: 400px;
+  background-size: contain;
+  position: relative;
+  align-items: end;
+}

@@ -1,0 +1,40 @@
+{
+  "jhipsterApp": {
+    "proyectos": {
+      "home": {
+        "title": "Proyectos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Proyectos",
+        "createOrEditLabel": "Crear o editar Proyectos",
+        "notFound": "Ningún Proyectos encontrado"
+      },
+      "created": "Un nuevo Proyecto ha sido creado",
+      "updated": "Un Proyecto ha sido actualizado",
+      "deleted": "Un Proyecto ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar el Proyecto?"
+      },
+      "detail": {
+        "title": "Proyectos"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "descripcion": "Descripción",
+      "autor": "Autor",
+      "necesidad": "Código",
+      "entidad_gestora": "Entidad Gestora",
+      "entidad_ejecutora": "Entidad Ejecutora",
+      "entidad_participantes": "Entidades Participantes",
+      "fechaInicio": "Fecha Inicio",
+      "fechaFin": "Fecha Fin",
+      "logoUrl": "Imagen",
+      "partipantes": "Partipantes",
+      "user": "User",
+      "sector": "Sector",
+      "lineaInvestigacion": "Prioridad",
+      "ods": "ODS",
+      "ecosistema": "Ecosistema",
+      "tipoProyecto": "Tipo Proyecto"
+    }
+  }
+}

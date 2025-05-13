@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20221104121038",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "comenetarios_idea",
+  "fields": [
+    {
+      "fieldName": "comentario",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaInscripcion",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ComenetariosIdea",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "comenetariosIdea",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "titulo",
+      "otherEntityName": "idea",
+      "otherEntityRelationshipName": "comentario",
+      "relationshipName": "idea",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

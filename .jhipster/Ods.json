@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20221104121044",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "ods",
+  "fields": [
+    {
+      "fieldName": "ods",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Ods",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "proyectos",
+      "otherEntityRelationshipName": "ods",
+      "ownerSide": false,
+      "relationshipName": "proyectos",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,26 @@
+{
+  "jhipsterApp": {
+    "redesSociales": {
+      "home": {
+        "title": "Redes Sociales",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Red Social",
+        "createOrEditLabel": "Crear o editar Redes Sociales",
+        "notFound": "Ninga Rede Social ha sido encontrada"
+      },
+      "created": "Una nueva Rede Social ha sido creada",
+      "updated": "Una Rede Social ha sido actualizada",
+      "deleted": "Un Rede Social ha sido eliminada",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar la Rede Social?"
+      },
+      "detail": {
+        "title": "Rede Sociale"
+      },
+      "id": "ID",
+      "redesUrl": "Url",
+      "logoUrl": "Imagen",
+      "ecosistema": "Ecosistema"
+    }
+  }
+}

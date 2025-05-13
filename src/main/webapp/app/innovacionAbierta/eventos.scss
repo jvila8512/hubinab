@@ -1,0 +1,113 @@
+.celia1 {
+  font-family: Tahoma, Arial, 'Trebuchet MS', Tahoma, sans-serif;
+  font-size: 0.74em;
+  line-height: 1.64em;
+  background: #fff;
+  color: #444;
+}
+
+.resaltar {
+  color: #e9967a;
+}
+
+.resaltar2 {
+  color: #e9967a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+h1 .celia {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.4em;
+  margin: 15px 0 0 5px;
+}
+
+/*h1 a:hover { color: #E4FFD3; background: inherit; }*/
+h2 .celia {
+  margin: 0 0 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+p .resaltar {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6em;
+  margin: 0 0 12px;
+}
+
+p .celia {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6em;
+  margin: 0px 0 0 0px;
+}
+
+div .content {
+  width: 920px;
+  margin: 0 auto;
+}
+
+div .logo {
+  float: left;
+  border-bottom: 5px solid #7dd0f1;
+  height: 58px;
+  width: 330px;
+}
+
+.intro {
+  clear: both;
+
+  background-size: cover;
+  color: #333;
+  height: 150px;
+  padding: 20px 0 0 20px;
+}
+
+.intro h1 {
+  margin: 0;
+  display: inline;
+  color: #7dd0f1;
+  padding: 2px 5px;
+}
+
+#left {
+  clear: left;
+  float: left;
+  width: 550px;
+  padding: 0 34px 0 5px;
+  margin: 15px 0 15px;
+}
+
+#left img {
+  border: 1px solid #ccc;
+  padding: 1px;
+  float: left;
+  margin: 0 15px 5px 0;
+}
+
+#right {
+  position: relative;
+  top: -80px;
+  margin: 0 15px 0 0;
+  padding: 15px;
+  float: right;
+  width: 284px;
+  font-size: 0.9em;
+  background: #fff;
+}
+
+#right img {
+  border: 1px solid #ccc;
+  padding: 1px;
+  margin: 0 0 8px;
+}
+
+#right h2 {
+  border-bottom: 1px solid #ccc;
+  padding: 0 0 8px;
+}
+
+.clear {
+  clear: both;
+}

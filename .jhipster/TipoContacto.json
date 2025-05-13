@@ -1,0 +1,21 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165819",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tipo_contacto",
+  "fields": [
+    {
+      "fieldName": "tipoContacto",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TipoContacto",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

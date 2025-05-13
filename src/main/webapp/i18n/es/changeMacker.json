@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "changeMacker": {
+      "home": {
+        "title": "Change Mackers",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Change Macker",
+        "createOrEditLabel": "Crear o editar Change Macker",
+        "notFound": "Ningún Change Mackers encontrado"
+      },
+      "created": "Un nuevo Change Macker ha sido creado",
+      "updated": "Un Change Macker ha sido actualizado ",
+      "deleted": "Un Change Macker ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Change Macker {{ id }}?"
+      },
+      "detail": {
+        "title": "Change Macker"
+      },
+      "id": "ID",
+      "foto": "Imagen",
+      "nombre": "Nombre",
+      "tema": "Tema",
+      "descripcion": "Descripción"
+    }
+  }
+}

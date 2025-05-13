@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "comunidad": {
+      "home": {
+        "title": "Comunidad",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Comunidad",
+        "createOrEditLabel": "Crear o editar Comunidad",
+        "notFound": "Ninguna Comunidad ha sido encontrada"
+      },
+      "created": "Una nueva Comunidad ha sido creada",
+      "updated": "Una Comunidad ha sido actualizada",
+      "deleted": "Una Comunidad ha sido eliminada",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar la Comunidad?"
+      },
+      "detail": {
+        "title": "Comunidad"
+      },
+      "id": "ID",
+      "comunidad": "Comunidad",
+      "descripcion": "Descripción",
+      "link": "Dirección web",
+      "activo": "Activo"
+    }
+  }
+}

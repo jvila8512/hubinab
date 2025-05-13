@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "tipoProyecto": {
+      "home": {
+        "title": "Tipos de Proyecto",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tipo Proyecto",
+        "createOrEditLabel": "Crear o editar Tipo Proyecto",
+        "notFound": "Ningún Tipo Proyectos ha sido encontrado"
+      },
+      "created": "Un nuevo Tipo Proyecto ha sido creado",
+      "updated": "Un Tipo Proyecto ha sido actualizado",
+      "deleted": "Un Tipo Proyecto ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Proyecto?"
+      },
+      "detail": {
+        "title": "Tipo Proyecto"
+      },
+      "id": "ID",
+      "tipoProyecto": "Tipo Proyecto",
+      "proyectos": "Proyectos"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.ribbon11 {
+  background-color: rgba(45, 186, 20, 0.5);
+  left: -0.5em;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  overflow: hidden;
+  position: absolute;
+  top: 250px;
+  white-space: nowrap;
+  width: 13em;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0.75;
+  a {
+    color: #fff;
+    display: block;
+    font-weight: 600;
+
+    margin: 1px 0;
+    padding: 10px 50px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 0 5px #444;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "jhipsterApp": {
+    "contacto": {
+      "home": {
+        "title": "Contactos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Contacto",
+        "createOrEditLabel": "Contactar",
+        "notFound": "Ningún Contactos encontrado"
+      },
+      "created": "Un nuevo Contacto ha sido creado, espere respuesta",
+      "updated": "Un Contacto ha sido actualizado",
+      "deleted": "Un Contacto ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Contacto ?"
+      },
+      "detail": {
+        "title": "Contacto"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "telefono": "Teléfono",
+      "correo": "Correo",
+      "mensaje": "Mensaje",
+      "fechaContacto": "Fecha Contacto",
+      "tipoContacto": "Tipo Contacto"
+    }
+  }
+}

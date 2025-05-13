@@ -1,0 +1,28 @@
+.ecosistema {
+  display: inline-block;
+  width: 100%;
+  height: 200px;
+  background: url('../../../../../../uploads/ecosistema.png') no-repeat center top;
+  background-size: contain;
+}
+.p-multiselect {
+  min-width: 15rem;
+}
+
+.multiselect-custom .p-multiselect-label:not(.p-placeholder):not(.p-multiselect-items-label) {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.multiselect-custom .country-item-value {
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  display: inline-flex;
+  margin-right: 0.5rem;
+  background-color: var(--primary-color);
+  color: var(--primary-color-text);
+}
+
+.multiselect-custom .country-item-value img.flag {
+  width: 17px;
+}

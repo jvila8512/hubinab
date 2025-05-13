@@ -1,0 +1,38 @@
+{
+  "jhipsterApp": {
+    "footerSection": {
+      "home": {
+        "title": "Secciones del Footer",
+        "refreshListLabel": "Actualizar lista",
+        "createLabel": "Crear nueva sección",
+        "createOrEditLabel": "Crear o editar sección",
+        "notFound": "No se encontraron secciones del footer"
+      },
+      "created": "Se ha creado una nueva sección del footer",
+      "updated": "Se ha actualizado la sección del footer",
+      "deleted": "Se ha eliminado la sección del footer",
+      "delete": {
+        "question": "¿Está seguro que desea eliminar esta sección del footer?"
+      },
+      "detail": {
+        "title": "Detalle de la Sección"
+      },
+      "id": "ID",
+      "title": "Título",
+      "content": "Contenido(separar por / para ver por puntos)",
+      "section_order": "Orden de sección",
+      "is_active": "Activa",
+      "activation": {
+        "activate": "Activar sección",
+        "deactivate": "Desactivar sección",
+        "question": "¿Cambiar estado de activación de esta sección?"
+      },
+      "validation": {
+        "titleRequired": "El título es requerido",
+        "contentRequired": "El contenido es requerido",
+        "orderRequired": "El orden es requerido",
+        "orderMin": "El orden debe ser al menos 1"
+      }
+    }
+  }
+}

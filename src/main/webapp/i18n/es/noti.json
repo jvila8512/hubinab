@@ -1,0 +1,28 @@
+{
+  "jhipsterApp": {
+    "noti": {
+      "home": {
+        "title": "Notis",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Noti",
+        "createOrEditLabel": "Crear o editar Noti",
+        "notFound": "Ningún Notis encontrado"
+      },
+      "created": "Un nuevo Noti ha sido creado con el identificador {{ param }}",
+      "updated": "Un Noti ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Noti ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Noti {{ id }}?"
+      },
+      "detail": {
+        "title": "Noti"
+      },
+      "id": "ID",
+      "descripcion": "Descripción",
+      "visto": "Visto",
+      "fecha": "Fecha",
+      "user": "Usuario",
+      "usercreada": "Creada"
+    }
+  }
+}

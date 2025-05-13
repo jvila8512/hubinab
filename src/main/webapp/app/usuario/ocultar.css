@@ -1,0 +1,7 @@
+.p-buttondfdf {
+  display: none; /* Oculta el label */
+}
+
+.p-splitbutton .p-splitbutton-defaultbutton {
+  display: none; /* Oculta el botón del menú */
+}

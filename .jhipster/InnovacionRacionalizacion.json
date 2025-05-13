@@ -1,0 +1,63 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165814",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "innovacion_racionalizacion",
+  "fields": [
+    {
+      "fieldName": "tematica",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fecha",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "vp",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "autores",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroIdentidad",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "observacion",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "aprobada",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "publico",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "InnovacionRacionalizacion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "tipoIdea",
+      "otherEntityName": "tipoIdea",
+      "otherEntityRelationshipName": "innovacionRacionalizacion",
+      "relationshipName": "tipoIdea",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

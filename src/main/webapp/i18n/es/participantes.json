@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "participantes": {
+      "home": {
+        "title": "Participantes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Participantes",
+        "createOrEditLabel": "Crear o editar Participantes",
+        "notFound": "Ningún Participantes encontrado"
+      },
+      "created": "Un nuevo Participante ha sido creado",
+      "updated": "Un Participante ha sido actualizado ",
+      "deleted": "Un Participante ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Participante?"
+      },
+      "detail": {
+        "title": "Participantes"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "telefono": "Teléfono",
+      "correo": "Correo",
+      "proyectos": "Proyectos"
+    }
+  }
+}

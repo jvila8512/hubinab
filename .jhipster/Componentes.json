@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165809",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "componentes",
+  "fields": [
+    {
+      "fieldName": "componente",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "activo",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Componentes",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

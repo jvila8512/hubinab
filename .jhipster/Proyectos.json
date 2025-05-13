@@ -1,0 +1,104 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165812",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "proyectos",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "autor",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "necesidad",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaInicio",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaFin",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "logoUrl",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Proyectos",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "participantes",
+      "otherEntityRelationshipName": "proyectos",
+      "relationshipName": "partipantes",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "proyectos",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "sector",
+      "otherEntityName": "sector",
+      "otherEntityRelationshipName": "proyectos",
+      "ownerSide": true,
+      "relationshipName": "sector",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "linea",
+      "otherEntityName": "lineaInvestigacion",
+      "otherEntityRelationshipName": "proyectos",
+      "ownerSide": true,
+      "relationshipName": "lineaInvestigacion",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "ods",
+      "otherEntityName": "ods",
+      "otherEntityRelationshipName": "proyectos",
+      "ownerSide": true,
+      "relationshipName": "ods",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "ecosistema",
+      "otherEntityRelationshipName": "proyectos",
+      "relationshipName": "ecosistema",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "tipoProyecto",
+      "otherEntityName": "tipoProyecto",
+      "otherEntityRelationshipName": "proyectos",
+      "relationshipName": "tipoProyecto",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

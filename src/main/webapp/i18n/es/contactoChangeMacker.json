@@ -1,0 +1,29 @@
+{
+  "jhipsterApp": {
+    "contactoChangeMacker": {
+      "home": {
+        "title": "Contacto Change Mackers",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Contacto Change Macker",
+        "createOrEditLabel": "Crear o editar Contacto Change Macker",
+        "notFound": "Ningún Contacto Change Mackers encontrado"
+      },
+      "created": "Un nuevo Contacto Change Macker",
+      "updated": "Un Contacto Change Macker ha sido actualizado",
+      "deleted": "Un Contacto Change Macker ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Contacto Change Macker {{ id }}?"
+      },
+      "detail": {
+        "title": "Contacto Change Macker"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "telefono": "Teléfono",
+      "correo": "Correo",
+      "mensaje": "Mensaje",
+      "fechaContacto": "Fecha Contacto",
+      "changeMacker": "Change Macker"
+    }
+  }
+}

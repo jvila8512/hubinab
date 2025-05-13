@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "ods": {
+      "home": {
+        "title": "Ods",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Ods",
+        "createOrEditLabel": "Crear o editar Ods",
+        "notFound": "Ningún Ods encontrado"
+      },
+      "created": "Un nuevo Ods ha sido creado",
+      "updated": "Un Ods ha sido actualizado",
+      "deleted": "Un Ods ha sido eliminado ",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Ods {{ id }}?"
+      },
+      "detail": {
+        "title": "Ods"
+      },
+      "id": "ID",
+      "ods": "Ods",
+      "proyectos": "Proyectos"
+    }
+  }
+}

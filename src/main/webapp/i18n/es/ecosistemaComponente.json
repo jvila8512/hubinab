@@ -1,0 +1,29 @@
+{
+  "jhipsterApp": {
+    "ecosistemaComponente": {
+      "home": {
+        "title": "Componentes de ",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Ecosistema Componente",
+        "createOrEditLabel": "Crear o editar Ecosistema Componente",
+        "notFound": "Ningún Ecosistema Componentes encontrado"
+      },
+      "created": "Un nuevo  Componente del Ecosistema ha sido creado",
+      "updated": "Un Componente del Ecosistema ha sido actualizado ",
+      "deleted": "Un Componente del Ecosistema ha sido eliminado",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Ecosistema Componente {{ id }}?"
+      },
+      "detail": {
+        "title": " Componente Ecosistema"
+      },
+      "id": "ID",
+      "link": "Link (Opcional)",
+      "documentoUrl": "Documento",
+      "descripcion": "Descripción",
+      "componentehijo": "Componente",
+      "componente": "Tipo de Componente",
+      "ecosistema": "Ecosistema"
+    }
+  }
+}

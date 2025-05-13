@@ -1,0 +1,60 @@
+{
+  "applications": "*",
+  "changelogDate": "20221016165815",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tramite",
+  "fields": [
+    {
+      "fieldName": "inscripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pruebaExperimental",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "exmanenEvaluacion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dictamen",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "concesion",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "denegado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "reclamacion",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "anulacion",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "fechaNotificacion",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "fecaCertificado",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "observacion",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Tramite",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
