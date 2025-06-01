@@ -44,6 +44,7 @@ import { FileUpload } from 'primereact/fileupload';
 import { Calendar } from 'primereact/calendar';
 import dayjs from 'dayjs';
 import { Chip } from 'primereact/chip';
+import { Checkbox } from 'primereact/checkbox';
 
 const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: string }>) => {
   const dispatch = useAppDispatch();
@@ -93,6 +94,8 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
   const [proyecto, setProyecto] = useState(null);
   const [selectedProyecto, setSelectedProyecto] = useState(emptyProyecto);
 
+  const [eliminarImagen, setEliminarImagen] = useState(false);
+
   const fileUploadRef = useRef(null);
   const file = useAppSelector(state => state.files.entity);
   const updatingFile = useAppSelector(state => state.files.updating);
@@ -140,6 +143,10 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
   }, [updateSuccessFile]);
 
   const handleFileUpload = event => {
+    // Verificar si hay archivos seleccionados
+    if (!event.files || event.files.length === 0) {
+      return; // Salir de la función si no hay archivos
+    }
     const fileupload = event.files[0];
     const formData = new FormData();
     formData.append('files', selectedFile);
@@ -248,12 +255,14 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
   const verDialogNuevo = () => {
     setRetoDialogNew(true);
     setNew(true);
+    setEliminarImagen(false);
   };
 
   const actualizar = retoact => {
     setProyecto({ ...retoact });
     setRetoDialogNew(true);
     setNew(false);
+    setEliminarImagen(false);
   };
 
   const atras = () => {
@@ -403,15 +412,17 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
       lineaInvestigacions: mapIdList(values.lineaInvestigacions),
       ods: mapIdList(values.ods),
       tipoProyecto: tipoProyectos.find(it => it.id.toString() === values.tipoProyecto.toString()),
-      logoUrlContentType: selectedFile ? selectedFile.name : values.logoUrlContentType,
+      logoUrlContentType: eliminarImagen ? null : selectedFile ? selectedFile.name : values.logoUrlContentType,
     };
 
     if (isNew) {
       entity.user = account;
       dispatch(createEntity(entity));
       selectedFile && fileUploadRef.current.upload();
+      setEliminarImagen(false);
     } else {
       dispatch(updateEntity(entity));
+      setEliminarImagen(false);
     }
   };
   const defaultValues = () =>
@@ -633,6 +644,13 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
                     id="logoUrlContentType"
                     type="text"
                   />
+                  {!isNew && proyecto?.logoUrlContentType && (
+                    <img
+                      src={`content/uploads/${proyecto.logoUrlContentType}`}
+                      style={{ maxHeight: '300px' }}
+                      className="mt-0 mx-auto mb-5 block shadow-2 w-full"
+                    />
+                  )}
                   <FileUpload
                     ref={fileUploadRef}
                     name="demo[1]"
@@ -653,6 +671,23 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
                     uploadOptions={uploadOptions}
                     cancelOptions={cancelOptions}
                   />
+                  <div className=" mt-4 mb-3">
+                    <Checkbox
+                      onChange={e => {
+                        setEliminarImagen(e.checked);
+                        // Opcional: Limpiar fileUpload si se marca eliminar
+                        if (e.target.checked && fileUploadRef.current) {
+                          fileUploadRef.current.clear();
+                        }
+                      }}
+                      value="Eliminar imagen actual"
+                      checked={eliminarImagen}
+                      disabled={!selectedProyecto?.logoUrlContentType ? true : false}
+                    ></Checkbox>
+                    <label htmlFor="ingredient4" className="ml-2">
+                      Eliminar imagen actual
+                    </label>
+                  </div>
                   <ValidatedField
                     label={translate('jhipsterApp.proyectos.nombre')}
                     id="proyectos-nombre"

@@ -40,6 +40,7 @@ import {
   deletefile,
 } from 'app/entities/Files/files.reducer';
 import { FileUpload } from 'primereact/fileupload';
+import { Checkbox } from 'primereact/checkbox';
 
 export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: string }>) => {
   const dispatch = useAppDispatch();
@@ -60,6 +61,8 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
   const [deleteNoticiasDialog, setDeleteNoticiasDialog] = useState(false);
 
   const [text2, setText2] = useState('');
+
+  const [eliminarImagen, setEliminarImagen] = useState(false);
 
   const emptyEcosistema = {
     id: null,
@@ -138,6 +141,10 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
   }, [updateSuccessFile]);
 
   const handleFileUpload = event => {
+    // Verificar si hay archivos seleccionados
+    if (!event.files || event.files.length === 0) {
+      return; // Salir de la función si no hay archivos
+    }
     const fileupload = event.files[0];
     const formData = new FormData();
     formData.append('files', selectedFile);
@@ -253,6 +260,7 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
   const verDialogNuevo = () => {
     setNoticiasDialogNew(true);
     setNew(true);
+    setEliminarImagen(false);
   };
   const confirmDeleteSelected = rowNoticia => {
     setDeleteNoticiasDialog(true);
@@ -322,7 +330,7 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
       ...values,
 
       ecosistema: ecosistemaEntity,
-      urlFotoContentType: selectedFile ? selectedFile.name : values.urlFotoContentType,
+      urlFotoContentType: eliminarImagen ? null : selectedFile ? selectedFile.name : values.urlFotoContentType,
       tipoNoticia: tipoNoticias.find(it => it.id.toString() === values.tipoNoticia.toString()),
     };
 
@@ -374,6 +382,7 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
     setSelectedNoticias(noticiasact);
     setNoticiasDialogNew(true);
     setNew(false);
+    setEliminarImagen(false);
   };
   const fechaBodyTemplate = rowData => {
     return <>{rowData.fechaCreada}</>;
@@ -453,17 +462,13 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                         validate={{ required: true }}
                       />
                     ) : null}
-
-                    <ValidatedField
-                      name="urlFotoContentType"
-                      data-cy="urlFotoContentType"
-                      required
-                      readOnly
-                      hidden
-                      id="urlFotoContentType"
-                      type="text"
-                    />
-
+                    {!isNew && selectedNoticias?.urlFotoContentType && (
+                      <img
+                        src={`content/uploads/${selectedNoticias.urlFotoContentType}`}
+                        style={{ maxHeight: '300px' }}
+                        className="mt-0 mx-auto mb-5 block shadow-2 w-full"
+                      />
+                    )}
                     <FileUpload
                       ref={fileUploadRef}
                       name="demo[1]"
@@ -483,8 +488,24 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                       chooseOptions={chooseOptions}
                       uploadOptions={uploadOptions}
                       cancelOptions={cancelOptions}
-                    />
-
+                    />{' '}
+                    <div className=" mt-4 mb-3">
+                      <Checkbox
+                        onChange={e => {
+                          setEliminarImagen(e.checked);
+                          // Opcional: Limpiar fileUpload si se marca eliminar
+                          if (e.target.checked && fileUploadRef.current) {
+                            fileUploadRef.current.clear();
+                          }
+                        }}
+                        value="Eliminar imagen actual"
+                        checked={eliminarImagen}
+                        disabled={!selectedNoticias?.urlFotoContentType ? true : false}
+                      ></Checkbox>
+                      <label htmlFor="ingredient4" className="ml-2">
+                        Eliminar imagen actual
+                      </label>
+                    </div>
                     <ValidatedField
                       label={translate('jhipsterApp.noticias.titulo')}
                       id="noticias-titulo"
@@ -495,7 +516,6 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                         required: { value: true, message: translate('entity.validation.required') },
                       }}
                     />
-
                     <ValidatedField
                       label={translate('jhipsterApp.noticias.descripcion')}
                       id="noticias-descripcion"
@@ -506,7 +526,6 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                         required: { value: true, message: translate('entity.validation.required') },
                       }}
                     />
-
                     <ValidatedField
                       label={translate('jhipsterApp.noticias.publica')}
                       id="noticias-publica"
@@ -515,7 +534,6 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                       check
                       type="checkbox"
                     />
-
                     {account.authorities.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
                       <ValidatedField
                         label={translate('jhipsterApp.noticias.publicar')}
@@ -526,7 +544,6 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                         type="checkbox"
                       />
                     )}
-
                     <ValidatedField
                       label={translate('jhipsterApp.noticias.fechaCreada')}
                       id="noticias-fechaCreada"
@@ -537,7 +554,6 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                         required: { value: true, message: translate('entity.validation.required') },
                       }}
                     />
-
                     <ValidatedField
                       id="noticias-tipoNoticia"
                       name="tipoNoticia"
@@ -557,7 +573,6 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                           ))
                         : null}
                     </ValidatedField>
-
                     <Button color="primary" id="save-entity" data-cy="entityCreateSaveButton" type="submit" disabled={updating}>
                       <span className="m-auto pl-2">
                         <FontAwesomeIcon icon="save" />

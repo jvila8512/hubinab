@@ -196,7 +196,6 @@ public class ProyectosResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of proyectos in body.
      */
     @GetMapping("/proyectos/byecosistemaTodos")
-    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public List<Proyectos> getAllProyectosByTodos() {
         return proyectosService.findAll();
     }

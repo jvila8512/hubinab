@@ -28,6 +28,8 @@ import { getEntities as getOds } from 'app/entities/ods/ods.reducer';
 import { ITipoProyecto } from 'app/shared/model/tipo-proyecto.model';
 import { getEntities as getTipoProyectos } from 'app/entities/tipo-proyecto/tipo-proyecto.reducer';
 import { IProyectos } from 'app/shared/model/proyectos.model';
+import { Checkbox } from 'primereact/checkbox';
+
 import {
   getEntity,
   updateEntity,
@@ -85,6 +87,8 @@ const ProyectosAdmin = (props: RouteComponentProps<{ id: string }>) => {
   const isGestorEcosistema = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.GESTOR]));
   const isUser = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.USER]));
   const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
+
+  const [eliminarImagen, setEliminarImagen] = useState(false);
 
   const dt = useRef(null);
 
@@ -182,12 +186,14 @@ const ProyectosAdmin = (props: RouteComponentProps<{ id: string }>) => {
   const verDialogNuevo = () => {
     setRetoDialogNew(true);
     setNew(true);
+    setEliminarImagen(false);
   };
 
   const actualizar = retoact => {
     setProyecto({ ...retoact });
     setRetoDialogNew(true);
     setNew(false);
+    setEliminarImagen(false);
   };
 
   const atras = () => {
@@ -487,14 +493,16 @@ const ProyectosAdmin = (props: RouteComponentProps<{ id: string }>) => {
       lineaInvestigacions: mapIdList(values.lineaInvestigacions),
       ods: mapIdList(values.ods),
       tipoProyecto: tipoProyectos.find(it => it.id.toString() === values.tipoProyecto.toString()),
-      logoUrlContentType: selectedFile ? selectedFile.name : values.logoUrlContentType,
+      logoUrlContentType: eliminarImagen ? null : selectedFile ? selectedFile.name : values.logoUrlContentType,
     };
 
     if (isNew) {
       dispatch(createEntity(entity));
       fileUploadRef.current.upload();
+      setEliminarImagen(false);
     } else {
       dispatch(updateEntity(entity));
+      setEliminarImagen(false);
     }
   };
   const defaultValues = () =>
@@ -519,6 +527,10 @@ const ProyectosAdmin = (props: RouteComponentProps<{ id: string }>) => {
   };
 
   const handleFileUpload = event => {
+    // Verificar si hay archivos seleccionados
+    if (!event.files || event.files.length === 0) {
+      return; // Salir de la función si no hay archivos
+    }
     const fileupload = event.files[0];
     const formData = new FormData();
     formData.append('files', selectedFile);
@@ -904,6 +916,13 @@ const ProyectosAdmin = (props: RouteComponentProps<{ id: string }>) => {
                     id="logoUrlContentType"
                     type="text"
                   />
+                  {!isNew && proyecto?.logoUrlContentType && (
+                    <img
+                      src={`content/uploads/${proyecto.logoUrlContentType}`}
+                      style={{ maxHeight: '300px' }}
+                      className="mt-0 mx-auto mb-5 block shadow-2 w-full"
+                    />
+                  )}
                   <FileUpload
                     ref={fileUploadRef}
                     name="demo[1]"
@@ -923,7 +942,25 @@ const ProyectosAdmin = (props: RouteComponentProps<{ id: string }>) => {
                     chooseOptions={chooseOptions}
                     uploadOptions={uploadOptions}
                     cancelOptions={cancelOptions}
-                  />
+                    disabled={eliminarImagen}
+                  />{' '}
+                  <div className=" mt-4 mb-3">
+                    <Checkbox
+                      onChange={e => {
+                        setEliminarImagen(e.checked);
+                        // Opcional: Limpiar fileUpload si se marca eliminar
+                        if (e.target.checked && fileUploadRef.current) {
+                          fileUploadRef.current.clear();
+                        }
+                      }}
+                      value="Eliminar imagen actual"
+                      checked={eliminarImagen}
+                      disabled={!selectedProyecto?.logoUrlContentType ? true : false}
+                    ></Checkbox>
+                    <label htmlFor="ingredient4" className="ml-2">
+                      Eliminar imagen actual
+                    </label>
+                  </div>
                   <ValidatedField
                     id="proyectos-ecosistema"
                     name="ecosistema"

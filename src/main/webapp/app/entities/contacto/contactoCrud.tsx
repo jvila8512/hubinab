@@ -182,6 +182,7 @@ const ContactoCRUD = (props: RouteComponentProps<{ id: string; index: string }>)
     return (
       <>
         <Button icon="pi pi-pencil" className="p-button-rounded p-button-warning ml-2 mb-1" onClick={() => actualizar(rowData)} />
+        <Button icon="pi pi-trash" className="p-button-rounded p-button-danger ml-2 mb-1" onClick={() => verAnirista(rowData)} />
       </>
     );
   };
@@ -380,7 +381,7 @@ const ContactoCRUD = (props: RouteComponentProps<{ id: string; index: string }>)
               <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
               {selectedContacto && (
                 <span>
-                  ¿Seguro que quiere eliminar el Anirista: <b>{selectedContacto.nombre}</b>?
+                  ¿Seguro que quiere eliminar el Contacto: <b>{selectedContacto.nombre}</b>?
                 </span>
               )}
             </div>
