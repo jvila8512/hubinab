@@ -32,6 +32,7 @@ import {
 } from 'app/entities/Files/files.reducer';
 
 import { FileUpload } from 'primereact/fileupload';
+import { Checkbox } from 'primereact/checkbox';
 
 const ComponenteIdea1 = props => {
   const dispatch = useAppDispatch();
@@ -72,6 +73,8 @@ const ComponenteIdea1 = props => {
   const notificacion = useAppSelector(state => state.notificacion.entity);
 
   const [respuestaNotificacion, setRespuestaNotificacion] = useState(null);
+
+  const [eliminarImagen, setEliminarImagen] = useState(false);
 
   const [open, setOpen] = useState(false);
 
@@ -261,7 +264,7 @@ const ComponenteIdea1 = props => {
       reto: props.reto,
       tipoIdea: props.tipoIdeass.find(it => it.id.toString() === values.tipoIdea.toString()),
       entidad: props.entidades.find(it => it.id.toString() === values.entidad.toString()),
-      fotoContentType: selectedFile ? selectedFile.name : values.fotoContentType,
+      fotoContentType: eliminarImagen ? null : selectedFile ? selectedFile.name : values.fotoContentType,
     };
     selectedFile && fileUploadRef.current.upload();
     dispatch(actualizarIdea(entity));
@@ -300,6 +303,7 @@ const ComponenteIdea1 = props => {
 
   const actualizarIdeas = () => {
     setIdeaDialog(true);
+    setEliminarImagen(false);
   };
 
   const saveEntity = () => {
@@ -380,15 +384,21 @@ const ComponenteIdea1 = props => {
 
   return (
     <div key={idea.id} className="p-2 ">
-      <div className=" w-18rem h-30rem sm:w-24rem max-h-30rem  p-4 border-round-xl shadow-4 mb-2 relative">
+      <div className=" w-26rem h-30rem sm:w-24rem max-h-30rem  p-4 border-round-xl shadow-4 mb-2 relative">
         <div className="flex flex-column align-items-center gap-3 py-5">
           {renderDevRibbon()}
 
-          <img className="h-13rem w-full  border-round" src={`content/uploads/${idea.fotoContentType}`} alt={idea.titulo} />
+          <img
+            className="h-13rem w-full border-round"
+            src={idea.fotoContentType ? `content/uploads/${idea.fotoContentType}` : 'content/uploads/ideas.jpg'}
+            alt={idea.titulo}
+          />
         </div>
-        <div className="text-xl font-bold text-900">{idea.titulo}</div>
+        <div className="text-xl font-bold text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis">{idea.titulo}</div>
         {idea.user.id === props.usuarioo.id && <div className="text-1xl  text-600 ">Autor: {idea.autor}</div>}
-        <div className="text-1xl  text-600 ">Tipo Idea: {idea.tipoIdea?.tipoIdea}</div>
+        <div className="text-1xl text-600 white-space-nowrap overflow-hidden text-overflow-ellipsis">
+          Tipo Idea: {idea.tipoIdea?.tipoIdea}
+        </div>
 
         <div className="flex absolute bottom-0 left-0 mb-8 ml-5">
           <div className="flex align-items-center gap-3">
@@ -433,7 +443,7 @@ const ComponenteIdea1 = props => {
               <div className="flex flex-column  justify-content-center  mt-2">
                 {idea.likes.map((likeIdea, i) => (
                   <span key={likeIdea.id} className="flex align-items-center gap-2 text-sm text-white">
-                    {likeIdea.user.firstName + ' ' + likeIdea.user.lastName}
+                    {likeIdea.user.login}
                   </span>
                 ))}
               </div>
@@ -472,6 +482,13 @@ const ComponenteIdea1 = props => {
           ) : (
             <ValidatedForm defaultValues={defaultValuesIdeas()} onSubmit={saveIdea}>
               <ValidatedField name="fotoContentType" data-cy="fotoContentType" required readOnly hidden id="fotoContentType" type="text" />
+              {idea1?.fotoContentType && (
+                <img
+                  src={`content/uploads/${idea.fotoContentType}`}
+                  style={{ maxHeight: '300px' }}
+                  className="mt-0 mx-auto mb-5 block shadow-2 w-full"
+                />
+              )}
               <FileUpload
                 ref={fileUploadRef}
                 name="demo[1]"
@@ -492,6 +509,23 @@ const ComponenteIdea1 = props => {
                 uploadOptions={uploadOptions}
                 cancelOptions={cancelOptions}
               />
+              <div className=" mt-4 mb-3">
+                <Checkbox
+                  onChange={e => {
+                    setEliminarImagen(e.checked);
+                    // Opcional: Limpiar fileUpload si se marca eliminar
+                    if (e.target.checked && fileUploadRef.current) {
+                      fileUploadRef.current.clear();
+                    }
+                  }}
+                  value="Eliminar imagen actual"
+                  checked={eliminarImagen}
+                  disabled={!idea1?.fotoContentType ? true : false}
+                ></Checkbox>
+                <label htmlFor="ingredient4" className="ml-2">
+                  Eliminar imagen actual
+                </label>
+              </div>
               <ValidatedField
                 label={translate('jhipsterApp.idea.numeroRegistro')}
                 id="idea-numeroRegistro"

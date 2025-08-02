@@ -167,9 +167,9 @@ const VistaprincipalIdeaReto = (
               </div>
             ) : (
               <img
-                src={`data:${ideaEntity.fotoContentType};base64,${ideaEntity.foto}`}
+                src={`content/uploads/${ideaEntity.fotoContentType}`}
                 style={{ maxHeight: '500px' }}
-                className="md:ml-auto block md:h-full pt-4"
+                className=" flex w-9 sm:w-8 sm:justify-content-center md:w-10 xl:w-10 shadow-2 block xl:block mt-4 border-round"
               />
             )}
           </div>
@@ -237,9 +237,7 @@ const VistaprincipalIdeaReto = (
           {comenetariosIdeaEntities && comenetariosIdeaEntities.length > 0
             ? comenetariosIdeaEntities.map((comenetariosIdea, i) => (
                 <Card key={comenetariosIdea.id} className=" relative shadow-6 mt-2">
-                  <div className="text-900 font-medium text-lg mt-2">
-                    {comenetariosIdea.user?.firstName + ' ' + comenetariosIdea.user?.lastName}
-                  </div>
+                  <div className="text-900 font-medium text-lg mt-2">{comenetariosIdea.user?.login}</div>
                   <p className="mt-2">{comenetariosIdea.comentario}</p>
                   <div className="flex align-items-center mt-3">
                     <i className="pi pi-clock mr-2"></i>

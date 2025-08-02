@@ -219,6 +219,11 @@ public class RetoResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/retos/todos")
+    public List<Reto> getAllRetos() {
+        return retoService.findAllWithEagerRelationshipsTodos();
+    }
+
     /**
      * {@code GET  /retos} : get all the retos.
      *
@@ -321,18 +326,42 @@ public class RetoResource {
 
         List<Reto> buscarParaRevisarFechas = retoService.findAllWithEagerRelationshipsByIdEcosistemaTodas(id);
         LocalDate fechaActual = LocalDate.now();
-        for (Reto reto1 : buscarParaRevisarFechas) {
-            Reto retousrdar = reto1;
 
-            LocalDate FI = retousrdar.getFechaInicio();
-            LocalDate FF = retousrdar.getFechaFin();
+        for (Reto reto : buscarParaRevisarFechas) {
+            LocalDate fechaInicio = reto.getFechaInicio();
+            LocalDate fechaFin = reto.getFechaFin();
 
-            if (FF.isBefore(fechaActual) && retousrdar.getValidado()) {
-                retousrdar.setActivo(false);
-                partialUpdateReto(retousrdar.getId(), retousrdar);
-            } else if ((FI.isEqual(fechaActual) && retousrdar.getValidado()) || (FI.isBefore(fechaActual) && retousrdar.getValidado())) {
-                retousrdar.setActivo(true);
-                partialUpdateReto(retousrdar.getId(), retousrdar);
+            // Caso 1: Si NO está validado, forzar activo = false
+            if (!reto.getValidado()) {
+                if (reto.getActivo()) { // Solo actualizar si está activo (evitar updates innecesarios)
+                    reto.setActivo(false);
+                    partialUpdateReto(reto.getId(), reto);
+                }
+                continue; // Saltar al siguiente reto
+            }
+
+            // Caso 2: Si SÍ está validado, aplicar lógica de fechas
+            boolean necesitaActualizar = false;
+            boolean nuevoEstado = reto.getActivo(); // Mantener el estado actual por defecto
+
+            if (fechaInicio == null && fechaFin == null) {
+                // Si no hay fechas definidas, considerar como siempre activo?
+                nuevoEstado = true;
+            } else if (fechaFin != null && fechaFin.isBefore(fechaActual)) {
+                // Si la fecha fin ya pasó, desactivar
+                nuevoEstado = false;
+            } else if (fechaInicio != null && fechaInicio.isAfter(fechaActual)) {
+                // Si la fecha inicio es en el futuro, desactivar
+                nuevoEstado = false;
+            } else if (fechaInicio != null && (fechaInicio.isEqual(fechaActual) || fechaInicio.isBefore(fechaActual))) {
+                // Si la fecha inicio es hoy o en el pasado, y no se cumplió el caso anterior, activar
+                nuevoEstado = true;
+            }
+
+            // Solo actualizar si el estado cambió
+            if (reto.getActivo() != nuevoEstado) {
+                reto.setActivo(nuevoEstado);
+                partialUpdateReto(reto.getId(), reto);
             }
         }
 

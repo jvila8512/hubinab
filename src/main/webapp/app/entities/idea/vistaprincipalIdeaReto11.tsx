@@ -258,9 +258,7 @@ const VistaprincipalIdeaReto11 = (
           {comenetariosIdeaEntities && comenetariosIdeaEntities.length > 0
             ? comenetariosIdeaEntities.map((comenetariosIdea, i) => (
                 <Card key={comenetariosIdea.id} className=" relative shadow-6 mt-2">
-                  <div className="text-900 font-medium text-lg mt-2">
-                    {comenetariosIdea.user?.firstName + ' ' + comenetariosIdea.user?.lastName}
-                  </div>
+                  <div className="text-900 font-medium text-lg mt-2">{comenetariosIdea.user?.login}</div>
                   <p className="mt-2">{comenetariosIdea.comentario}</p>
                   <div className="flex align-items-center mt-3">
                     <i className="pi pi-calendar mr-2"></i>

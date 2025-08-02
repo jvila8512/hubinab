@@ -24,6 +24,7 @@ export interface IProyectos {
   ods?: IOds[] | null;
   ecosistema?: IEcosistema | null;
   tipoProyecto?: ITipoProyecto | null;
+  aprobada?: boolean | null;
 }
 
 export const defaultValue: Readonly<IProyectos> = {};

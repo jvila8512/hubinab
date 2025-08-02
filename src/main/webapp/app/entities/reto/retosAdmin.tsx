@@ -23,6 +23,7 @@ import {
   getEntity,
   reset,
   getEntitiesByEcosistematodasFiltrarFechas,
+  getEntitiestodosAdmin,
 } from './reto.reducer';
 import { TextFormat } from 'react-jhipster';
 import { APP_LOCAL_DATE_FORMAT, APP_LOCAL_DATE_FORMAT1, AUTHORITIES } from 'app/config/constants';
@@ -57,14 +58,13 @@ import {
 import { FileUpload } from 'primereact/fileupload';
 import { Checkbox } from 'primereact/checkbox';
 
-const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) => {
+const RetosIdeasAdmin = (props: RouteComponentProps<{ id: string; index: string }>) => {
   const dispatch = useAppDispatch();
   const retoList = useAppSelector(state => state.reto.entities);
   const loading = useAppSelector(state => state.reto.loading);
   const retoEntity = useAppSelector(state => state.reto.entity);
   const updating = useAppSelector(state => state.reto.updating);
   const updateSuccess = useAppSelector(state => state.reto.updateSuccess);
-  const [eliminarImagen, setEliminarImagen] = useState(false);
 
   const currentDate = new Date().toISOString().split('T')[0];
 
@@ -104,6 +104,8 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
   const [fechaInicio, setfechaInicio] = useState(false);
   const [fechaInicioValidar, setfechaInicioValidar] = useState('');
 
+  const [eliminarImagen, setEliminarImagen] = useState(false);
+
   const emptyReto = {
     id: null,
     reto: '',
@@ -112,7 +114,6 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
     fechaInicio: '',
     fechaFin: '',
     visto: null,
-    validado: 0,
     urlFoto: null,
     urlFotoContentType: '',
     user: null,
@@ -181,7 +182,7 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
       retos.then(response => {});
     }
 
-    dispatch(getEntitiesByEcosistematodasFiltrarFechas(props.match.params.id));
+    dispatch(getEntitiestodosAdmin());
     setRetoDialogNew(false);
   }, [updateSuccess]);
 
@@ -278,8 +279,7 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
   };
 
   useEffect(() => {
-    dispatch(getEntitiesByEcosistematodasFiltrarFechas(props.match.params.id));
-    dispatch(getEcosistema(props.match.params.id));
+    dispatch(getEntitiestodosAdmin());
     dispatch(getTipoIdeas({}));
     dispatch(getEntidades({}));
     dispatch(getTipoNotificaciones({}));
@@ -324,7 +324,7 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
   };
 
   const atras = () => {
-    props.history.push(`/usuario-panel/${props.match.params.index}`);
+    props.history.push(`/usuario-panel`);
   };
 
   const leftToolbarTemplate = () => {
@@ -346,7 +346,7 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
   };
   const atrasvista = () => {
     dispatch(reset());
-    props.history.push(`/entidad/reto/retogrid/${props.match.params.id}/${props.match.params.index}`);
+    props.history.push(`/usuario-panel`);
   };
 
   const rightToolbarTemplate = () => {
@@ -355,16 +355,13 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
         {account?.authorities?.find(rol => rol === 'ROLE_GESTOR') && ecosistemaEntity?.users?.find(user => user.id === account?.id) && (
           <Button label="Nuevo Reto" icon="pi pi-plus" className="p-button-info" onClick={verDialogNuevo} />
         )}
-        <Button label="Cambiar Vista" icon="pi pi-arrow-up" className="p-button-primary mr-2 ml-2" onClick={atrasvista} />
       </React.Fragment>
     );
   };
   const header = (
     <div className="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
       <h5 className="m-0 text-blue-600">Retos</h5>
-      <h5 className="m-0 ">
-        <span className="text-blue-600"> Ecosistema: {ecosistemaEntity.nombre}</span>
-      </h5>
+
       <span className="block mt-2 md:mt-0 p-input-icon-left">
         <i className="pi pi-search" />
         <InputText value={globalFilter} type="search" onInput={onGlobalFilterChange} placeholder="Buscar..." />
@@ -392,29 +389,23 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
   const actionBodyTemplate = rowData => {
     return (
       <>
-        {rowData.activo && (
-          <Button
-            icon="pi pi-eye"
-            tooltip="Ver Reto"
-            tooltipOptions={{ position: 'left' }}
-            className="p-button-rounded p-button-info ml-2 mb-1"
-            onClick={() => verReto(rowData)}
-          />
-        )}
-        {account.id === rowData?.user?.id && (
-          <Button
-            icon="pi pi-sun"
-            tooltip="Ver Ideas de este Reto"
-            tooltipOptions={{ position: 'left' }}
-            className="p-button-rounded p-button-success ml-2 mb-1"
-            onClick={() => verIdeas(rowData)}
-          />
-        )}
+        <Button
+          icon="pi pi-eye"
+          tooltip="Ver Reto"
+          tooltipOptions={{ position: 'left' }}
+          className="p-button-rounded p-button-info ml-2 mb-1"
+          onClick={() => verReto(rowData)}
+        />
 
-        {(account.id === rowData?.user?.id ||
-          (account?.authorities?.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && ecosistemaEntity?.user?.login === account?.login)) && (
-          <Button icon="pi pi-pencil" className="p-button-rounded p-button-warning ml-2 mb-1" onClick={() => actualizar(rowData)} />
-        )}
+        <Button
+          icon="pi pi-sun"
+          tooltip="Ver Ideas de este Reto"
+          tooltipOptions={{ position: 'left' }}
+          className="p-button-rounded p-button-success ml-2 mb-1"
+          onClick={() => verIdeas(rowData)}
+        />
+
+        <Button icon="pi pi-pencil" className="p-button-rounded p-button-warning ml-2 mb-1" onClick={() => actualizar(rowData)} />
       </>
     );
   };
@@ -571,6 +562,7 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
           >
             <Column selectionMode="single" headerStyle={{ width: '4rem' }}></Column>
             <Column field="id" header="Id" hidden headerStyle={{ minWidth: '15rem' }}></Column>
+            <Column field="ecosistema.nombre" header="Ecosistema" headerStyle={{ minWidth: '20rem' }}></Column>
             <Column field="activo" header="Estado" body={estadoTemplate} headerStyle={{ minWidth: '7rem' }}></Column>
             <Column field="user.login" header="Usuario" headerStyle={{ minWidth: '15rem' }}></Column>
             <Column field="reto" header="Reto" sortable body={retoBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
@@ -915,4 +907,4 @@ const RetosIdeas = (props: RouteComponentProps<{ id: string; index: string }>) =
   );
 };
 
-export default RetosIdeas;
+export default RetosIdeasAdmin;

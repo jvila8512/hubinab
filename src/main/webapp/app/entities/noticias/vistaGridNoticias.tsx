@@ -200,7 +200,7 @@ const VistaGridNoticias = (props: RouteComponentProps<{ id: string; index: strin
             emptyMessage="No hay Noticias"
             lazy
           />
-        ) : !loading ? (
+        ) : loading ? (
           <SpinnerCar />
         ) : (
           <div className="alert alert-warning mt-4">No hay Noticias.</div>

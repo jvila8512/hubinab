@@ -113,4 +113,6 @@ public interface NoticiasService {
     Long contarEcosistemas(Long id);
 
     List<Noticias> busquedaGeneralPorEcosistemasId(List<Long> ecosistemas);
+
+    List<Noticias> obtenerNoticiasByEcositemaID(Long id);
 }

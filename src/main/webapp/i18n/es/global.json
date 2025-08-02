@@ -169,6 +169,7 @@
     "idnull": "ID inválido",
     "idinvalid": "ID inválido",
     "idnotfound": "ID no encontrado",
+    "retosAsociados": "No se puede quitar al usuario porque tiene retos asociados. Contacte al Administrador",
     "file": {
       "could.not.extract": "No se pudo extraer el fichero",
       "not.image": "Se esperaba que el fichero fuera una imagen pero se encontro \"{{ fileType }}\""

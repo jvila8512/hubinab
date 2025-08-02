@@ -34,7 +34,8 @@
       "lineaInvestigacion": "Prioridad",
       "ods": "ODS",
       "ecosistema": "Ecosistema",
-      "tipoProyecto": "Tipo Proyecto"
+      "tipoProyecto": "Tipo Proyecto",
+      "aprobada": "Aprobar Proyecto"
     }
   }
 }

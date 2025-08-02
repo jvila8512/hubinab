@@ -65,6 +65,8 @@ const VistaReto1 = (
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileModificar, setfileModificar] = useState(null);
 
+  const [eliminarImagen, setEliminarImagen] = useState(false);
+
   const handleFileUpload = event => {
     const fileupload = event.files[0];
     const formData = new FormData();

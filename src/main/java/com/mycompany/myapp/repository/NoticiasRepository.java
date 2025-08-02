@@ -93,4 +93,6 @@ public interface NoticiasRepository extends JpaRepository<Noticias, Long> {
     List<Noticias> findAllWithToOneRelationshipsByPublicaByEcositema(@Param("id") Long id);
 
     List<Noticias> findAllByPublicaTrueAndEcosistemaIdInOrderByEcosistemaIdDesc(Collection<Long> ecosistemas);
+
+    List<Noticias> findAllByEcosistemaId(@Param("id") Long id);
 }

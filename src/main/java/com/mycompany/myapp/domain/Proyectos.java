@@ -40,6 +40,17 @@ public class Proyectos implements Serializable {
     @Column(name = "entidad_gestora", nullable = false)
     private String entidadGestora;
 
+    @Column(name = "aprobada")
+    private Boolean aprobada;
+
+    public Boolean getAprobada() {
+        return aprobada;
+    }
+
+    public void setAprobada(Boolean aprobada) {
+        this.aprobada = aprobada;
+    }
+
     public String getEntidadGestora() {
         return entidadGestora;
     }

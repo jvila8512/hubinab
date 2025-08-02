@@ -42,7 +42,7 @@ export const getEntity = createAsyncThunk(
 );
 
 export const getEntitiesCarrusel = createAsyncThunk('ecosistema/fetch_entity_list_carrusel_by_Activos', async () => {
-  const requestUrl = `${apiUrl}/activos`;
+  const requestUrl = `${apiUrl}/activoss`;
   return axios.get<IEcosistema[]>(requestUrl);
 });
 
@@ -136,6 +136,12 @@ export const EcosistemaSlice = createEntitySlice({
         state.errorMessage = null;
         state.updateSuccess = false;
         state.updating = true;
+      }) // Agrega esto en tus extraReducers (junto con los demás .addMatcher)
+      .addMatcher(isRejected(updateEntity), (state, action) => {
+        state.updating = false;
+        state.loading = false;
+        state.updateSuccess = false;
+        state.errorMessage = action.error.message; // Mensaje de error de la API
       });
   },
 });

@@ -331,7 +331,7 @@ const IdeasbyRetos = (props: RouteComponentProps<{ id: string; idecosistema: str
             ></Column>
             <Column field="fechaInicio" header="Fecha Registrada" sortable body={fechaInicioBodyTemplate}></Column>
             <Column field="visto" header="Visto" sortable></Column>
-            <Column field="publica" header="Publica" body={publica} sortable></Column>
+            <Column field="publica" header="Pública" body={publica} sortable></Column>
             <Column field="entidad" header="Entidad" hidden sortable></Column>
             <Column field="tipoIdea" header="TipoIdea" hidden sortable></Column>
             <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>

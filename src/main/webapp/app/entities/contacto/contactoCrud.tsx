@@ -127,8 +127,9 @@ const ContactoCRUD = (props: RouteComponentProps<{ id: string; index: string }>)
       </React.Fragment>
     );
   };
-  const confirmDeleteSelected = () => {
+  const confirmDeleteSelected = rowData => {
     setDeleteRetoDialog(true);
+    setSelectedContacto(rowData);
   };
 
   const verDialogNuevo = () => {
@@ -182,7 +183,7 @@ const ContactoCRUD = (props: RouteComponentProps<{ id: string; index: string }>)
     return (
       <>
         <Button icon="pi pi-pencil" className="p-button-rounded p-button-warning ml-2 mb-1" onClick={() => actualizar(rowData)} />
-        <Button icon="pi pi-trash" className="p-button-rounded p-button-danger ml-2 mb-1" onClick={() => verAnirista(rowData)} />
+        <Button icon="pi pi-trash" className="p-button-rounded p-button-danger ml-2 mb-1" onClick={() => confirmDeleteSelected(rowData)} />
       </>
     );
   };

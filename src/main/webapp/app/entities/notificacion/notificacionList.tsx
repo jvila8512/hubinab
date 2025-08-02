@@ -6,6 +6,7 @@ import {
   getEntity,
   updateEntity,
   createEntity,
+  deleteEntity,
   reset,
   getTodasEntitiesbyUser,
   vistaUpdateEntity,
@@ -127,10 +128,26 @@ const NotificacionList = (props: RouteComponentProps<{ idUserLogueado: string }>
       </div>
     </div>
   );
+  const deleteNoticia = () => {
+    dispatch(deleteEntity(selectedNotificacion.id));
 
+    setDeleteNotificacionDialog(false);
+    setSelectedNotificacion(null);
+  };
+  const hideDeleteNoticiasDialog = () => {
+    setDeleteNotificacionDialog(false);
+  };
   const tituloBodyTemplate = rowData => {
     return <>{rowData.titulo}</>;
   };
+
+  const deleteNoticicacionDialogFooter = (
+    <>
+      <Button label="No" icon="pi pi-times" className="p-button-text" onClick={hideDeleteNoticiasDialog} />
+
+      <Button label="Sí" icon="pi pi-check" className="p-button-text" onClick={deleteNoticia} />
+    </>
+  );
 
   const descripcionBodyTemplate = rowData => {
     return (
@@ -182,6 +199,7 @@ const NotificacionList = (props: RouteComponentProps<{ idUserLogueado: string }>
     return (
       <div className="align-items-center justify-content-center">
         <Button icon="pi pi-eye" className="p-button-rounded p-button-info ml-2 mb-1" onClick={() => verNotificacion(rowData)} />
+        <Button icon="pi pi-trash" className="p-button-rounded p-button-danger ml-2 mb-1" onClick={() => confirmDeleteSelected(rowData)} />
       </div>
     );
   };
@@ -482,6 +500,24 @@ const NotificacionList = (props: RouteComponentProps<{ idUserLogueado: string }>
                   </div>
                 </Row>
               )}
+            </Dialog>
+
+            <Dialog
+              visible={deleteNotificacionDialog}
+              style={{ width: '450px' }}
+              header="Confirmar"
+              modal
+              footer={deleteNoticicacionDialogFooter}
+              onHide={hideDeleteNoticiasDialog}
+            >
+              <div className="flex align-items-center justify-content-center">
+                <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
+                {selectedNotificacion && (
+                  <span>
+                    ¿Seguro que quiere eliminar la Notificación: <b>{selectedNotificacion.descripcion}</b>?
+                  </span>
+                )}
+              </div>
             </Dialog>
           </div>
         </div>

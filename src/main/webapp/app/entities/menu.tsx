@@ -16,6 +16,9 @@ const EntitiesMenu = ({ on }) => {
       <MenuItem icon={faBell as IconProp} to="/entidad/ecosistema/crud" on={on}>
         <Translate contentKey="global.menu.entities.ecosistema" />
       </MenuItem>
+      <MenuItem icon={faBell as IconProp} to="/entidad/reto/adminreto" on={on}>
+        <Translate contentKey="global.menu.entities.reto" />
+      </MenuItem>
 
       <MenuItem icon={faBell as IconProp} to="/entidad/innovacion-racionalizacion/crud" on={on}>
         <Translate contentKey="global.menu.entities.innovacionRacionalizacion" />

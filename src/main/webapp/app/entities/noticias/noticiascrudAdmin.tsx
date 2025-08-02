@@ -30,7 +30,19 @@ import { Translate, ValidatedBlobField, ValidatedField, ValidatedForm, translate
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Tag } from 'primereact/tag';
 
-export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) => {
+import { Avatar } from 'primereact/avatar';
+import {
+  getEntity as getFile,
+  getEntities as getFiles,
+  createEntity as createFile,
+  reset as resetFile,
+  getArchivo,
+  deletefile,
+} from 'app/entities/Files/files.reducer';
+import { FileUpload } from 'primereact/fileupload';
+import { Checkbox } from 'primereact/checkbox';
+
+export const NoticiasCrudAdmin = () => {
   const dispatch = useAppDispatch();
   const noticiasList = useAppSelector(state => state.noticias.entities);
   const [isNew, setNew] = useState(true);
@@ -43,13 +55,14 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
   const updating = useAppSelector(state => state.noticias.updating);
   const updateSuccess = useAppSelector(state => state.noticias.updateSuccess);
   const account = useAppSelector(state => state.authentication.account);
-  const ecosistemas = useAppSelector(state => state.ecosistema.entities);
 
   const [globalFilter, setGlobalFilterValue] = useState('');
   const [noticiasDialogNew, setNoticiasDialogNew] = useState(false);
   const [deleteNoticiasDialog, setDeleteNoticiasDialog] = useState(false);
 
   const [text2, setText2] = useState('');
+
+  const [eliminarImagen, setEliminarImagen] = useState(false);
 
   const emptyEcosistema = {
     id: null,
@@ -69,12 +82,149 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
 
   const dt = useRef(null);
 
+  const fileUploadRef = useRef(null);
+  const file = useAppSelector(state => state.files.entity);
+  const updatingFile = useAppSelector(state => state.files.updating);
+  const updateSuccessFile = useAppSelector(state => state.files.updateSuccess);
+  const loadingFile = useAppSelector(state => state.files.loading);
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileModificar, setfileModificar] = useState(null);
+
+  const borrar = icono => {
+    const consulta = deletefile(icono);
+    consulta.then(response => {
+      setNoticiasDialogNew(false);
+    });
+  };
+  useEffect(() => {
+    if (isNew) {
+      dispatch(reset());
+    }
+
+    dispatch(getEntities({}));
+    dispatch(getUsers({}));
+
+    dispatch(getTipoNoticias({}));
+  }, []);
+
+  useEffect(() => {
+    if (updateSuccess && isNew) {
+      dispatch(reset());
+      setNoticiasDialogNew(false);
+    }
+
+    if (updateSuccess && !isNew) {
+      setfileModificar(null);
+      selectedFile && fileUploadRef.current.upload();
+      setNoticiasDialogNew(false);
+    }
+    if (updateSuccess) {
+      dispatch(getEntities({}));
+    }
+  }, [updateSuccess]);
+
+  useEffect(() => {
+    if (updateSuccessFile && !isNew) {
+      borrar(selectedNoticias.urlFotoContentType);
+    }
+  }, [updateSuccessFile]);
+
+  const handleFileUpload = event => {
+    // Verificar si hay archivos seleccionados
+    if (!event.files || event.files.length === 0) {
+      return; // Salir de la función si no hay archivos
+    }
+    const fileupload = event.files[0];
+    const formData = new FormData();
+    formData.append('files', selectedFile);
+    dispatch(createFile(formData));
+  };
+
+  const chooseOptions = {
+    icon: 'pi pi-fw pi-images',
+    className: 'custom-choose-btn p-button-rounded p-button-outlined',
+  };
+  const uploadOptions = {
+    icon: 'pi pi-fw pi-cloud-upload',
+
+    className: 'custom-upload-btn p-button-success p-button-rounded p-button-outlined p-3',
+  };
+
+  const cancelOptions = { label: 'Cancel', icon: 'pi pi-times', className: 'p-button-danger' };
+
+  const onUpload = e => {};
+
+  const onTemplateSelect = e => {
+    setSelectedFile(e.files[0]);
+    setEliminarImagen(false);
+  };
+
+  const iconoTemplate = rowData => {
+    return (
+      <>
+        <Avatar image={`content/uploads/${rowData.icono}`} shape="circle" className="p-overlay-badge " size="xlarge" />
+      </>
+    );
+  };
+
+  const headerTemplate = options => {
+    const { className, chooseButton, uploadButton, cancelButton } = options;
+
+    return (
+      <div className={className + ' relative'} style={{ backgroundColor: 'transparent', display: 'flex', alignItems: 'center' }}>
+        {chooseButton}
+      </div>
+    );
+  };
+  const onTemplateRemove = (file1, callback) => {
+    setSelectedFile(null);
+    callback();
+  };
+  const itemTemplate = (file1, props1) => {
+    return (
+      <div className="flex flex-wrap align-items-center">
+        <div className="flex  align-items-center gap-3" style={{ width: '60%' }}>
+          <img alt={file1.name} role="presentation" src={file1.objectURL} width={100} />
+          <span className="flex flex-column text-left ml-3">
+            {file1.name}
+            <small>{new Date().toLocaleDateString()}</small>
+          </span>
+        </div>
+        <Tag value={props1.formatSize} severity="warning" className="px-4 py-3" />
+
+        <Button
+          type="button"
+          icon="pi pi-times"
+          className=" p-button-outlined p-button-rounded p-button-danger ml-3 p-3"
+          onClick={() => onTemplateRemove(file1, props1.onRemove)}
+        />
+      </div>
+    );
+  };
+
+  const emptyTemplate = () => {
+    return (
+      <div className="flex align-items-center flex-column">
+        {isNew ? (
+          <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className="my-5">
+            Puede arrastrar y soltar la imagen aquí
+          </span>
+        ) : (
+          <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className="my-5">
+            Puede arrastrar y soltar la imagen para Modificar
+          </span>
+        )}
+      </div>
+    );
+  };
+
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     titulo: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-    publica: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
     descripcion: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
     fechaCreada: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
+    user: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
   });
 
   const onGlobalFilterChange = e => {
@@ -86,60 +236,30 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
     setGlobalFilterValue(value);
   };
 
-  useEffect(() => {
-    if (isNew) {
-      dispatch(reset());
-    }
-
-    dispatch(getEcosistemas({}));
-    dispatch(getEntities({}));
-    dispatch(getUsers({}));
-
-    dispatch(getTipoNoticias({}));
-  }, []);
-
-  useEffect(() => {
-    if (updateSuccess) {
-      dispatch(getEntities({}));
-      setNew(true);
-      dispatch(reset());
-      setNoticiasDialogNew(false);
-    }
-  }, [updateSuccess]);
-
-  const atras = () => {
-    props.history.push(`/usuario-panel`);
-  };
   const leftToolbarTemplate = () => {
     return (
       <React.Fragment>
-        <div className="my-2">
-          <Button label="Atrás" icon="pi pi-arrow-left" className="p-button-secondary mr-2" onClick={atras} />
-        </div>
+        <div className="my-2"></div>
       </React.Fragment>
     );
   };
   const verDialogNuevo = () => {
     setNoticiasDialogNew(true);
     setNew(true);
+    setEliminarImagen(false);
   };
   const confirmDeleteSelected = rowNoticia => {
     setDeleteNoticiasDialog(true);
     setSelectedNoticias(rowNoticia);
+    setSelectedFile(null);
   };
-  const atrasvista = () => {
-    props.history.push(`/entidad/noticias/grid-noticias/`);
-  };
+
   const rightToolbarTemplate = () => {
-    return (
-      <React.Fragment>
-        <Button label="Nueva Noticia" icon="pi pi-plus" className="p-button-info" onClick={verDialogNuevo} />
-      </React.Fragment>
-    );
+    return <React.Fragment></React.Fragment>;
   };
   const header = (
     <div className="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-      <h3 className="m-0">Todas las Noticias:</h3>
+      <h5 className="m-0 text-blue-600">Noticias:</h5>
 
       <span className="block mt-2 md:mt-0 p-input-icon-left">
         <i className="pi pi-search" />
@@ -150,47 +270,35 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
   const tituloBodyTemplate = rowData => {
     return <>{rowData.titulo}</>;
   };
-  const ecosistemaBodyTemplate = rowData => {
-    return <>{rowData.ecosistema?.nombre}</>;
-  };
   const descripcionBodyTemplate = rowData => {
     return (
       <>
-        <>
-          <span className="pl-5">{rowData.descripcion}</span>
-        </>
+        <span className=" pl-2 surface-overlay w-full h-3rem overflow-hidden text-overflow-ellipsis">{rowData.descripcion}</span>
       </>
     );
   };
+
   const actionBodyTemplate = rowData => {
     return (
       <div className="align-items-center justify-content-center">
-        {rowData.publica && <Button icon="pi pi-eye" className="p-button-rounded p-button-info ml-2 mb-1" />}
-        {rowData.user?.id === account.id && (
-          <Button
-            icon="pi pi-trash"
-            className="p-button-rounded p-button-danger ml-2 mb-1"
-            onClick={() => confirmDeleteSelected(rowData)}
-          />
-        )}
+        <Button icon="pi pi-trash" className="p-button-rounded p-button-danger ml-2 mb-1" onClick={() => confirmDeleteSelected(rowData)} />
 
-        {rowData.user?.id === account.id && (
-          <Button icon="pi pi-pencil" className="p-button-rounded p-button-warning ml-2 mb-1" onClick={() => actualizarNoticias(rowData)} />
-        )}
+        <Button icon="pi pi-pencil" className="p-button-rounded p-button-warning ml-2 mb-1" onClick={() => actualizarNoticias(rowData)} />
       </div>
     );
   };
   const saveEntity = values => {
     const entity = {
-      ...noticiasEntity,
       ...values,
-      user: account,
 
-      ecosistema: ecosistemas.find(it => it.id.toString() === values.ecosistema.toString()),
+      ecosistema: ecosistemaEntity,
+      urlFotoContentType: eliminarImagen ? null : selectedFile ? selectedFile.name : values.urlFotoContentType,
       tipoNoticia: tipoNoticias.find(it => it.id.toString() === values.tipoNoticia.toString()),
     };
 
     if (isNew) {
+      entity.user = account;
+      selectedFile && fileUploadRef.current.upload();
       dispatch(createEntity(entity));
     } else {
       dispatch(updateEntity(entity));
@@ -202,8 +310,8 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
       ? {}
       : {
           ...selectedNoticias,
-          user: account,
-          ecosistema: selectedNoticias?.ecosistema?.id,
+
+          ecosistema: ecosistemaEntity,
           tipoNoticia: selectedNoticias?.tipoNoticia?.id,
         };
   const hideDialogNuevo = () => {
@@ -214,6 +322,7 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
   };
   const deleteNoticia = () => {
     dispatch(deleteEntity(selectedNoticias.id));
+    borrar(selectedNoticias.urlFotoContentType);
     setDeleteNoticiasDialog(false);
     setSelectedNoticias(null);
   };
@@ -235,12 +344,13 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
     setSelectedNoticias(noticiasact);
     setNoticiasDialogNew(true);
     setNew(false);
+    setEliminarImagen(false);
   };
   const fechaBodyTemplate = rowData => {
     return <>{rowData.fechaCreada}</>;
   };
   const userBodyTemplate = rowData => {
-    return <>{rowData.user?.login}</>;
+    return <>{rowData.user.login}</>;
   };
 
   return (
@@ -265,19 +375,12 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
               currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} Noticias"
               filters={filters as DataTableFilterMeta}
               filterDisplay="menu"
-              loading={loading}
               emptyMessage="No hay Noticias..."
               header={header}
               responsiveLayout="stack"
             >
-              <Column field="id" header="Id" hidden headerStyle={{ minWidth: '15rem' }}></Column>
-              <Column
-                field="ecosistema.nombre"
-                header="Ecosistema"
-                sortable
-                body={ecosistemaBodyTemplate}
-                headerStyle={{ minWidth: '15rem' }}
-              ></Column>
+              <Column field="id1" header="Id" hidden headerStyle={{ minWidth: '15rem' }}></Column>
+              <Column field="ecosistema.nombre" header="Ecosistema" sortable headerStyle={{ minWidth: '20rem' }}></Column>
               <Column field="titulo" header="Titulo" sortable body={tituloBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
 
               <Column
@@ -285,7 +388,7 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
                 header="Noticia"
                 sortable
                 body={descripcionBodyTemplate}
-                style={{ width: '40%', alignContent: 'right' }}
+                style={{ width: '40%' }}
                 headerStyle={{ minWidth: '15rem' }}
               ></Column>
               <Column field="publica" sortable header="Estado" body={publicaTemplate} headerStyle={{ minWidth: '7rem' }}></Column>
@@ -307,7 +410,7 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
             >
               <Row className="justify-content-center">
                 {loading ? (
-                  <p>Cargando...</p>
+                  <p className="mt-4">Cargando...</p>
                 ) : (
                   <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
                     {!isNew ? (
@@ -321,14 +424,50 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
                         validate={{ required: true }}
                       />
                     ) : null}
-                    <ValidatedBlobField
-                      label={translate('jhipsterApp.noticias.urlFoto')}
-                      id="noticias-urlFoto"
-                      name="urlFoto"
-                      data-cy="urlFoto"
-                      isImage
+                    {!isNew && selectedNoticias?.urlFotoContentType && (
+                      <img
+                        src={`content/uploads/${selectedNoticias.urlFotoContentType}`}
+                        style={{ maxHeight: '300px' }}
+                        className="mt-0 mx-auto mb-5 block shadow-2 w-full"
+                      />
+                    )}
+                    <FileUpload
+                      ref={fileUploadRef}
+                      name="demo[1]"
                       accept="image/*"
-                    />
+                      maxFileSize={1000000}
+                      chooseLabel={isNew ? 'Suba la imagen' : 'Suba la imagen nueva'}
+                      uploadLabel="Modificar"
+                      onSelect={onTemplateSelect}
+                      onUpload={onUpload}
+                      customUpload
+                      uploadHandler={handleFileUpload}
+                      headerTemplate={headerTemplate}
+                      itemTemplate={itemTemplate}
+                      invalidFileSizeMessageSummary="Tamaño del archivo no válido"
+                      invalidFileSizeMessageDetail="El tamaño máximo de carga es de 1MB"
+                      emptyTemplate={emptyTemplate}
+                      chooseOptions={chooseOptions}
+                      uploadOptions={uploadOptions}
+                      cancelOptions={cancelOptions}
+                    />{' '}
+                    <div className=" mt-4 mb-3">
+                      <Checkbox
+                        onChange={e => {
+                          setEliminarImagen(e.checked);
+                          // Opcional: Limpiar fileUpload si se marca eliminar
+                          if (e.target.checked && fileUploadRef.current) {
+                            fileUploadRef.current.clear();
+                          }
+                        }}
+                        value="Eliminar imagen actual"
+                        checked={eliminarImagen}
+                        disabled={!selectedNoticias?.urlFotoContentType ? true : false}
+                      ></Checkbox>
+                      <label htmlFor="ingredient4" className="ml-2">
+                        Eliminar imagen actual
+                      </label>
+                    </div>
                     <ValidatedField
                       label={translate('jhipsterApp.noticias.titulo')}
                       id="noticias-titulo"
@@ -339,7 +478,6 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
                         required: { value: true, message: translate('entity.validation.required') },
                       }}
                     />
-
                     <ValidatedField
                       label={translate('jhipsterApp.noticias.descripcion')}
                       id="noticias-descripcion"
@@ -350,17 +488,17 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
                         required: { value: true, message: translate('entity.validation.required') },
                       }}
                     />
-
-                    <ValidatedField
-                      label={translate('jhipsterApp.noticias.publica')}
-                      id="noticias-publica"
-                      name="publica"
-                      data-cy="publica"
-                      check
-                      type="checkbox"
-                    />
-
-                    {account.authorities.find(rol => rol === 'ROLE_ADMIN') && (
+                    {account.authorities.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
+                      <ValidatedField
+                        label={translate('jhipsterApp.noticias.publica')}
+                        id="noticias-publica"
+                        name="publica"
+                        data-cy="publica"
+                        check
+                        type="checkbox"
+                      />
+                    )}
+                    {account.authorities.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
                       <ValidatedField
                         label={translate('jhipsterApp.noticias.publicar')}
                         id="noticias-publicar"
@@ -371,36 +509,24 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
                       />
                     )}
                     <ValidatedField
-                      id="noticias-ecosistema"
-                      name="ecosistema"
-                      data-cy="ecosistema"
-                      label={translate('jhipsterApp.noticias.ecosistema')}
-                      type="select"
-                    >
-                      <option value="" key="0" />
-                      {ecosistemas
-                        ? ecosistemas.map(otherEntity => (
-                            <option value={otherEntity.id} key={otherEntity.id}>
-                              {otherEntity.nombre}
-                            </option>
-                          ))
-                        : null}
-                    </ValidatedField>
-
-                    <ValidatedField
                       label={translate('jhipsterApp.noticias.fechaCreada')}
                       id="noticias-fechaCreada"
                       name="fechaCreada"
                       data-cy="fechaCreada"
                       type="date"
+                      validate={{
+                        required: { value: true, message: translate('entity.validation.required') },
+                      }}
                     />
-
                     <ValidatedField
                       id="noticias-tipoNoticia"
                       name="tipoNoticia"
                       data-cy="tipoNoticia"
                       label={translate('jhipsterApp.noticias.tipoNoticia')}
                       type="select"
+                      validate={{
+                        required: { value: true, message: translate('entity.validation.required') },
+                      }}
                     >
                       <option value="" key="0" />
                       {tipoNoticias
@@ -411,7 +537,6 @@ export const NoticiasCrudAdmin = (props: RouteComponentProps<{ url: string }>) =
                           ))
                         : null}
                     </ValidatedField>
-
                     <Button color="primary" id="save-entity" data-cy="entityCreateSaveButton" type="submit" disabled={updating}>
                       <span className="m-auto pl-2">
                         <FontAwesomeIcon icon="save" />

@@ -1,6 +1,7 @@
 package com.mycompany.myapp.repository;
 
 import com.mycompany.myapp.domain.Reto;
+import com.mycompany.myapp.domain.User;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -31,11 +32,15 @@ public interface RetoRepository extends RetoRepositoryWithBagRelationships, JpaR
     }
 
     default List<Reto> findAllWithEagerRelationshipsByIdEcosistemaIdeas(Long id) {
-        return this.fetchBagRelationships(this.findAllWithRelationshipsByIdEcosistemasByActivos(id));
+        return this.fetchBagRelationships(this.findByEcosistemaIdOrderByActivoDescFechaInicioDesc(id));
     }
 
     default List<Reto> findAllWithEagerRelationshipsByIdEcosistemaIdeasTodos(Long id) {
         return this.fetchBagRelationships(this.findAllWithRelationshipsByIdEcosistemasTodos(id));
+    }
+
+    default List<Reto> findAllWithEagerRelationshipsTodossss() {
+        return this.todos();
     }
 
     List<Reto> findAllByEcosistemaIdOrderByFechaInicioDescActivoDesc(Long id);
@@ -73,6 +78,9 @@ public interface RetoRepository extends RetoRepositoryWithBagRelationships, JpaR
     @Query("select reto from Reto reto left join fetch reto.user left join fetch reto.ecosistema where reto.id =:id")
     Optional<Reto> findOneWithToOneRelationships(@Param("id") Long id);
 
+    @Query("select reto from Reto reto left join fetch reto.user left join fetch reto.ecosistema ")
+    List<Reto> todos();
+
     @Query(
         value = "select reto from Reto reto left join fetch reto.user left join fetch reto.ecosistema where reto.ecosistema.id =:id and reto.activo=true",
         countQuery = "select count(distinct reto) from Reto reto where reto.ecosistema.id =:id"
@@ -85,9 +93,11 @@ public interface RetoRepository extends RetoRepositoryWithBagRelationships, JpaR
     List<Reto> findAllWithRelationshipsByIdEcosistemasByActivos(@Param("id") Long id);
 
     @Query(
-        "select reto from Reto reto left join fetch reto.user left join fetch reto.ecosistema where reto.ecosistema.id =:id  ORDER BY  reto.fechaInicio DESC"
+        "select reto from Reto reto left join fetch reto.user left join fetch reto.ecosistema where reto.ecosistema.id =:id  ORDER BY reto.activo DESC"
     )
     List<Reto> findAllWithRelationshipsByIdEcosistemasTodos(@Param("id") Long id);
+
+    List<Reto> findByEcosistemaIdOrderByActivoDescFechaInicioDesc(@Param("id") Long id);
 
     @Query(
         "select reto from Reto reto left join fetch reto.user left join fetch reto.ecosistema where reto.ecosistema.id =:id and reto.user.id =:iduser  order by reto.fechaInicio asc"
@@ -96,4 +106,21 @@ public interface RetoRepository extends RetoRepositoryWithBagRelationships, JpaR
 
     @Query("select reto from Reto reto left join fetch reto.user left join fetch reto.ecosistema where reto.user.id =:id")
     List<Reto> findAllWithRelationshipsByIdUsuario(@Param("id") Long id);
+
+    @Query("select reto from Reto reto left join fetch reto.user left join fetch reto.ecosistema where reto.user.id =:id")
+    List<Reto> findAllWithRelationshipsByIdUsuariook(@Param("id") Long id);
+
+    boolean existsByUserId(Long userId);
+
+    // Versión CORREGIDA con SQL nativo preciso
+    @Query(
+        value = "SELECT EXISTS(" +
+        "SELECT 1 FROM reto r " +
+        "JOIN jhi_user u ON r.user_id = u.id " +
+        "JOIN ecosistema e ON r.ecosistema_id = e.id " +
+        "WHERE u.id = :userId AND e.id = :ecosistemaId" +
+        ")",
+        nativeQuery = true
+    )
+    boolean existsByUsuarioAndEcosistema(@Param("userId") Long userId, @Param("ecosistemaId") Long ecosistemaId);
 }

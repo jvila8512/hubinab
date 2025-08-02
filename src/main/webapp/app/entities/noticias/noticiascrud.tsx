@@ -9,6 +9,7 @@ import {
   getNoticiasByEcosistemaId,
   deleteEntity,
   getNoticiasByPublicabyEcosistemaIdbyUserId,
+  getNoticiasByEcosistemaIDtodas,
 } from './noticias.reducer';
 import { RouteComponentProps } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -101,13 +102,8 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
     if (isNew) {
       dispatch(reset());
     }
+    dispatch(getNoticiasByEcosistemaIDtodas(props.match.params.id));
 
-    dispatch(
-      getNoticiasByPublicabyEcosistemaIdbyUserId({
-        id: props.match.params.id,
-        iduser: account.id,
-      })
-    );
     dispatch(getUsers({}));
     dispatch(getEcosistema(props.match.params.id));
     dispatch(getTipoNoticias({}));
@@ -167,6 +163,7 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
 
   const onTemplateSelect = e => {
     setSelectedFile(e.files[0]);
+    setEliminarImagen(false);
   };
 
   const iconoTemplate = rowData => {
@@ -448,7 +445,7 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
             >
               <Row className="justify-content-center">
                 {loading ? (
-                  <p>Cargando...</p>
+                  <p className="mt-4">Cargando...</p>
                 ) : (
                   <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
                     {!isNew ? (
@@ -526,14 +523,16 @@ export const NoticiasCrud = (props: RouteComponentProps<{ id: string; index: str
                         required: { value: true, message: translate('entity.validation.required') },
                       }}
                     />
-                    <ValidatedField
-                      label={translate('jhipsterApp.noticias.publica')}
-                      id="noticias-publica"
-                      name="publica"
-                      data-cy="publica"
-                      check
-                      type="checkbox"
-                    />
+                    {account.authorities.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
+                      <ValidatedField
+                        label={translate('jhipsterApp.noticias.publica')}
+                        id="noticias-publica"
+                        name="publica"
+                        data-cy="publica"
+                        check
+                        type="checkbox"
+                      />
+                    )}
                     {account.authorities.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
                       <ValidatedField
                         label={translate('jhipsterApp.noticias.publicar')}

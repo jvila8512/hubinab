@@ -58,6 +58,8 @@ const VistaReto = (props: RouteComponentProps<{ id: string; index: string }>) =>
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileModificar, setfileModificar] = useState(null);
 
+  const [eliminarImagen, setEliminarImagen] = useState(false);
+
   const handleFileUpload = event => {
     const fileupload = event.files[0];
     const formData = new FormData();
@@ -131,11 +133,11 @@ const VistaReto = (props: RouteComponentProps<{ id: string; index: string }>) =>
       <div className="flex align-items-center flex-column">
         {isNewIdea ? (
           <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className="my-5">
-            Puede arrastrar y soltar el icono aquí
+            Puede arrastrar y soltar la imagen aquí
           </span>
         ) : (
           <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className="my-5">
-            Puede arrastrar y soltar el icono para Modificar
+            Puede arrastrar y soltar la imagen para Modificar
           </span>
         )}
       </div>

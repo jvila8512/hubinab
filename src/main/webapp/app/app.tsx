@@ -1,6 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 import './app.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Card } from 'reactstrap';
 import { BrowserRouter as Router, useHistory, Redirect } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -20,21 +20,14 @@ import { useSelector } from 'react-redux';
 import { getEntitiesActivas } from 'app/entities/comunidad/comunidad.reducer';
 
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
-const TIMEOUT = 900000; // 15 minutos en milisegundos 600000
+const TIMEOUT = 900000; // 15 minutos en milisegundos 900000
 export const App = () => {
   const dispatch = useAppDispatch();
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isAutenticate, setIsAutenticate] = useState(true);
   const logoutUrl = useAppSelector(state => state.authentication.logoutUrl);
   const history = useHistory();
-  const logoutSubmitHandler = () => {
-    // Aquí puedes llamar a una función para cerrar la sesión isAuthenticated
-    if (!isAutenticate) {
-      toast.error('Cerrada la  Sesion por inactividad');
-      dispatch(logout());
-      window.location.href = '/login';
-    }
-  };
+
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
   const isAuthenticated1 = useAppSelector(state => state.authentication.isAuthenticated);
 
@@ -50,36 +43,50 @@ export const App = () => {
     dispatch(getProfile());
     dispatch(getEntitiesActivas());
   }, []);
+  const logoutSubmitHandler = useCallback(() => {
+    toast.error('Sesión cerrada por inactividad');
+    dispatch(logout());
+    setIsAutenticate(false);
+    window.location.href = `${window.location.origin}/login`; // Redirección absoluta
+  }, [dispatch]);
 
+  // Sincronizar estado de autenticación
   useEffect(() => {
-    if (isAutenticate) setIsAutenticate(false);
-    let timer;
+    setIsAutenticate(!!isAuthenticated1);
+  }, [isAuthenticated1]);
+
+  // Efecto para el timeout de inactividad
+  useEffect(() => {
+    if (!isAutenticate) return; // No hacer nada si no está autenticado
+
+    let timer: number; // Tipo number para navegador
 
     const resetTimer = () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-
-      timer = setTimeout(() => {
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
         logoutSubmitHandler();
       }, TIMEOUT);
     };
 
-    const handleUserActivity = () => {
-      resetTimer();
-    };
+    // Eventos que indican actividad del usuario
+    const activityEvents = ['mousemove', 'keydown', 'scroll', 'click', 'mousedown', 'touchstart', 'touchmove', 'wheel'];
 
+    // Iniciar el temporizador
     resetTimer();
 
-    window.addEventListener('mousemove', handleUserActivity);
-    window.addEventListener('keydown', handleUserActivity);
+    // Agregar listeners
+    activityEvents.forEach(event => {
+      window.addEventListener(event, resetTimer);
+    });
 
+    // Limpieza
     return () => {
-      window.removeEventListener('mousemove', handleUserActivity);
-      window.removeEventListener('keydown', handleUserActivity);
+      if (timer) window.clearTimeout(timer);
+      activityEvents.forEach(event => {
+        window.removeEventListener(event, resetTimer);
+      });
     };
-  }, [isAuthenticated1]);
-
+  }, [isAutenticate, logoutSubmitHandler]);
   const paddingTop = '38px';
   return (
     <Router basename={baseHref}>

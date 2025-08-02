@@ -122,6 +122,22 @@ public class NoticiasResource {
     }
 
     /**
+     * {@code GET  /retos} : get all the retos.
+     *
+     * @param pageable  the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of retos in body.
+     */
+    @GetMapping("/noticias/noticiasByEcosistemasId/{id}")
+    public List<Noticias> getNoticiasByEcosistemasID(@PathVariable(value = "id", required = false) final Long id) {
+        // buscar los retos activos de todos los ecosistemas del ususario logueado
+
+        return noticiasService.obtenerNoticiasByEcositemaID(id);
+    }
+
+    /**
      * {@code PATCH  /noticias/:id} : Partial updates given fields of an existing noticias, field will ignore if it is null
      *
      * @param id the id of the noticias to save.

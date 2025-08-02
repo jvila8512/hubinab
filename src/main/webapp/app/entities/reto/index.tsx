@@ -15,11 +15,15 @@ import VistaPrincipal from './vistaPrincipalRetoEcosistema';
 import VistaReto from './VistaReto';
 import VistaReto1 from './VistaReto1';
 import VistaGridReto from './vistaGridRetoEcosistema';
+import VistaGridRetoAdmin from './vistaGridRetoEcosistemaAdmin';
+
+import RetosIdeasAdmin from './retosAdmin';
 
 const Routes = ({ match }) => (
   <>
     <Switch>
       <ErrorBoundaryRoute exact path={`${match.url}/new`} component={RetoUpdate} />
+      <ErrorBoundaryRoute exact path={`${match.url}/adminreto`} component={RetosIdeasAdmin} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id/edit`} component={RetoUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id`} component={RetoDetail} />
 

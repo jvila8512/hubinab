@@ -135,4 +135,9 @@ public class NoticiasServiceImpl implements NoticiasService {
     public List<Noticias> busquedaGeneralPorEcosistemasId(List<Long> ecosistemas) {
         return noticiasRepository.findAllByPublicaTrueAndEcosistemaIdInOrderByEcosistemaIdDesc(ecosistemas);
     }
+
+    @Override
+    public List<Noticias> obtenerNoticiasByEcositemaID(Long id) {
+        return noticiasRepository.findAllByEcosistemaId(id);
+    }
 }

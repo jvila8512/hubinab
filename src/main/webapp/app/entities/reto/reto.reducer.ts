@@ -48,6 +48,11 @@ export const getEntitiesByEcosistematodasFiltrarFechasSinRespuesta = async id =>
   return axios.get(requestUrl);
 };
 
+export const getEntitiestodosAdmin = createAsyncThunk(`${apiUrl}/retosTodosAdminnnnn`, async () => {
+  const requestUrl = `${apiUrl}/todos`;
+  return axios.get<IReto[]>(requestUrl);
+});
+
 export const getEntitiesByEcosistemaIdbyActivoDeTodoslosEcosistemasUSerLogueado = createAsyncThunk(
   `${apiUrl}/retosTodosByEcosistemasId111111`,
   async (idecosistemas: []) => {
@@ -156,6 +161,7 @@ export const RetoSlice = createEntitySlice({
       .addMatcher(
         isFulfilled(
           getEntities,
+          getEntitiestodosAdmin,
           getEntitiesByEcosistema,
           getEntitiesByEcosistema1,
           getEntitiesByEcosistemabyIdUser,
@@ -185,6 +191,7 @@ export const RetoSlice = createEntitySlice({
       .addMatcher(
         isPending(
           getEntities,
+          getEntitiestodosAdmin,
           getEntity,
           getEntitiesByEcosistema,
           getEntitiesByEcosistema1,

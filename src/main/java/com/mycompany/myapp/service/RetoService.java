@@ -82,6 +82,7 @@ public interface RetoService {
      */
     Page<Reto> findAllWithEagerRelationshipsByIdEcosistema1(Pageable pageable, Long id);
 
+    List<Reto> findAllWithEagerRelationshipsTodos();
     /**
      * Get all the retos with eager load of many-to-many relationships.
      *

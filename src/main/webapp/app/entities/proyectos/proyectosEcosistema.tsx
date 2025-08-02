@@ -83,6 +83,7 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
     partipantes: null,
     user: null,
     sectors: null,
+    aprobada: false,
     lineaInvestigacions: null,
     ods: null,
     ecosistema: null,
@@ -169,6 +170,7 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
 
   const onTemplateSelect = e => {
     setSelectedFile(e.files[0]);
+    setEliminarImagen(false);
   };
 
   const iconoTemplate = rowData => {
@@ -334,7 +336,8 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
       <>
         <Button icon="pi pi-eye" className="p-button-rounded p-button-info ml-2 mb-1" onClick={() => verReto(rowData)} />
 
-        {ecosistemaEntity.user?.login === account.login && account?.authorities?.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
+        {((ecosistemaEntity.user?.login === account.login && account?.authorities?.find(rol => rol === 'ROLE_ADMINECOSISTEMA')) ||
+          rowData.user?.id === account?.id) && (
           <Button
             icon="pi pi-trash"
             className="p-button-rounded p-button-danger ml-2 mb-1     disabled={!(account.id === rowData?.user?.id)}"
@@ -342,7 +345,8 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
           />
         )}
 
-        {ecosistemaEntity.user?.login === account.login && account?.authorities?.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
+        {((ecosistemaEntity.user?.login === account.login && account?.authorities?.find(rol => rol === 'ROLE_ADMINECOSISTEMA')) ||
+          rowData.user?.id === account?.id) && (
           <Button icon="pi pi-pencil" className="p-button-rounded p-button-warning ml-2 mb-1" onClick={() => actualizar(rowData)} />
         )}
       </>
@@ -406,13 +410,13 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
   const saveEntity = values => {
     const entity = {
       ...values,
-
       ecosistema: ecosistemaEntity,
       sectors: mapIdList(values.sectors),
       lineaInvestigacions: mapIdList(values.lineaInvestigacions),
       ods: mapIdList(values.ods),
       tipoProyecto: tipoProyectos.find(it => it.id.toString() === values.tipoProyecto.toString()),
       logoUrlContentType: eliminarImagen ? null : selectedFile ? selectedFile.name : values.logoUrlContentType,
+      aprobada: values.aprobada ?? defaultValues().aprobada ?? false,
     };
 
     if (isNew) {
@@ -437,6 +441,9 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
           ods: proyecto?.ods?.map(e => e.id.toString()),
           tipoProyecto: proyecto?.tipoProyecto?.id,
         };
+  const aprovadaTemplate = rowData => {
+    return <>{rowData.aprobada ? <Tag value="Aprobado" severity="success"></Tag> : <Tag value="No Aprobado" severity="danger"></Tag>}</>;
+  };
 
   return (
     <div className="grid crud-demo mt-3 mb-4">
@@ -464,16 +471,18 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
             responsiveLayout="stack"
           >
             <Column field="id" header="Id" hidden headerStyle={{ minWidth: '15rem' }}></Column>
-            <Column field="user.login" header="Usuario" hidden headerStyle={{ minWidth: '4rem' }}></Column>
-            <Column field="nombre" header="Nombre" sortable body={retoBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
+            <Column field="aprobada" header="Aprobación" body={aprovadaTemplate} sortable headerStyle={{ minWidth: '4rem' }}></Column>
+
+            <Column field="user.login" header="Creado" headerStyle={{ minWidth: '4rem' }}></Column>
             <Column
-              field="descricion"
-              header="Descripción"
-              style={{ width: '40%', alignContent: 'right' }}
+              field="nombre"
+              header="Nombre"
               sortable
-              body={nameBodyTemplate}
+              body={retoBodyTemplate}
+              style={{ width: '40%', alignContent: 'right' }}
               headerStyle={{ minWidth: '15rem' }}
             ></Column>
+            <Column field="descricion" header="Descripción" sortable body={nameBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
             <Column field="fechaInicio" header="Fecha.Inicio  " sortable dataType="date" body={fechaInicioBodyTemplate}></Column>
             <Column field="fechaFin" header="Fecha.Fin  " sortable dataType="date" body={fechaFinBodyTemplate}></Column>
 
@@ -615,6 +624,16 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
                   : null}
               </div>
               &nbsp;
+              {account.authorities.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
+                <ValidatedField
+                  label={translate('jhipsterApp.proyectos.aprobada')}
+                  id="proyecto-aprobada"
+                  name="aprobada"
+                  data-cy="aprobada"
+                  check
+                  type="checkbox"
+                />
+              )}
             </ValidatedForm>
           </Dialog>
 
@@ -836,6 +855,16 @@ const ProyectosEcosistemas = (props: RouteComponentProps<{ id: string; index: st
                         ))
                       : null}
                   </ValidatedField>
+                  {account.authorities.find(rol => rol === 'ROLE_ADMINECOSISTEMA') && (
+                    <ValidatedField
+                      label={translate('jhipsterApp.proyectos.aprobada')}
+                      id="proyecto-aprobada"
+                      name="aprobada"
+                      data-cy="aprobada"
+                      check
+                      type="checkbox"
+                    />
+                  )}
                   &nbsp;
                   <Button color="primary" id="save-entity" data-cy="entityCreateSaveButton" type="submit" disabled={updating}>
                     <span className="m-auto">

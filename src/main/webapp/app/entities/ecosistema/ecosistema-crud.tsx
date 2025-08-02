@@ -45,10 +45,12 @@ import {
 import { FileUpload } from 'primereact/fileupload';
 import { Chip } from 'primereact/chip';
 import SpinnerCar from '../loader/spinner';
+import { Checkbox } from 'primereact/checkbox';
 
 const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
   const dispatch = useAppDispatch();
   const ecosistemaList = useAppSelector(state => state.ecosistema.entities);
+  const errorMessage = useAppSelector(state => state.ecosistema.errorMessage);
   const loading = useAppSelector(state => state.ecosistema.loading);
   const { match } = props;
   const [filtrado, setFiltrado] = useState([]);
@@ -122,6 +124,8 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
 
   const [selectedAdmin, setSelectedAdmin] = useState(null);
 
+  const [eliminarImagen, setEliminarImagen] = useState(false);
+
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     nombre: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
@@ -187,7 +191,7 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
   const imageBodyTemplate = rowData => {
     return (
       <>
-        <img src={`content/uploads/${rowData.urlFotoContentType}`} style={{ maxHeight: '30px' }} />
+        <img src={`content/uploads/${rowData.logoUrlContentType}`} style={{ maxHeight: '30px' }} />
       </>
     );
   };
@@ -204,6 +208,7 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
     );
   };
   const verDialogNuevo = () => {
+    setEliminarImagen(false);
     setEcosistemaDialogNew(true);
     setNew(true);
     setSelectedFile(null);
@@ -257,12 +262,13 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
     const userfiltrado = selectedEcosistemaFiltrado?.users.filter(user => user.login !== rowUsuarios.login);
 
     copia.users = [...userfiltrado];
-    dispatch(updateEntity(entity));
 
+    dispatch(updateEntity(entity));
     setSelectedEcosistemaFiltrado(copia);
   };
 
   const actualizarEcosistema = retoact => {
+    setEliminarImagen(false);
     setSelectedEcosistema(retoact);
     setEcosistemaDialogNew(true);
     setNew(false);
@@ -326,14 +332,14 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
       usuariosCant: 0,
       retosCant: 0,
       ideasCant: 0,
-      logoUrlContentType: selectedFile && selectedFile.name,
+      logoUrlContentType: eliminarImagen ? null : selectedFile ? selectedFile.name : values.logoUrlContentType,
       ecosistemaRol: ecosistemaRols.find(it => it.id.toString() === values.ecosistemaRol.toString()),
       user: selectedAdmin ? selectedAdmin : account,
     };
     const entity1 = {
       ...values,
       retosCant: reto,
-      logoUrlContentType: selectedFile ? selectedFile.name : values.logoUrlContentType,
+      logoUrlContentType: eliminarImagen ? null : selectedFile ? selectedFile.name : values.logoUrlContentType,
 
       ecosistemaRol: ecosistemaRols.find(it => it.id.toString() === values.ecosistemaRol.toString()),
       user: selectedAdmin ? selectedAdmin : account,
@@ -356,10 +362,14 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
     if (updateSuccess) {
       setEcosistemaDialogNew(false);
       setSelectedEcosistemaUsuario(null);
+      setSelectedEcosistema(null);
       setSelectedAdmin(null);
-      setselectedEcosistemaFiltradoSelecionado(false);
     }
-  }, [updateSuccess]);
+
+    if (errorMessage) {
+      setSelectedEcosistemaFiltrado(ecosistemaList.find(ecosistema1 => ecosistema1.id === selectedEcosistemaFiltrado.id));
+    }
+  }, [updateSuccess, errorMessage]);
 
   const borrar = icono => {
     const consulta = deletefile(icono);
@@ -402,7 +412,6 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
 
     copia.users = [...li];
     dispatch(updateEntity(entity));
-
     setSelectedEcosistemaFiltrado(copia);
   };
 
@@ -463,10 +472,11 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
   };
 
   const filtradoUser = () => {
-    return users?.filter(user => user.login !== buscarUser(user) && buscarRolGestor(user));
+    return Array.isArray(users) ? users.filter(user => user.login !== buscarUser(user) && buscarRolGestor(user)) : [];
   };
+
   const filtradoUserAdmin = () => {
-    return users?.filter(user => user.login !== buscarUser(user) && buscarRolAdminEcosistema(user));
+    return Array.isArray(users) ? users.filter(user => user.login !== buscarUser(user) && buscarRolAdminEcosistema(user)) : [];
   };
 
   const filtradoUser1 = () => {
@@ -506,7 +516,7 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
           className=""
           style={{ width: '1.5rem', height: '1.5rem' }}
         ></Avatar>
-        <div className="ml-2">{option.login + '--' + option.firstName + ' ' + option.lastName}</div>
+        <div className="ml-2">{option.login}</div>
       </div>
     );
   };
@@ -515,6 +525,7 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
 
   const onTemplateSelect = e => {
     setSelectedFile(e.files[0]);
+    setEliminarImagen(false);
   };
 
   const iconoTemplate = rowData => {
@@ -566,11 +577,11 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
       <div className="flex align-items-center flex-column">
         {isNew ? (
           <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className="my-5">
-            Puede arrastrar y soltar el icono aquí
+            Puede arrastrar y soltar la imagen aquí
           </span>
         ) : (
           <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className="my-5">
-            Puede arrastrar y soltar el icono para Modificar
+            Puede arrastrar y soltar la imagen para Modificar
           </span>
         )}
       </div>
@@ -618,6 +629,7 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
             responsiveLayout="stack"
           >
             <Column field="id" header="Id" hidden headerStyle={{ minWidth: '15rem' }}></Column>
+            <Column field="logoUrlContentType" header="Imagen" body={imageBodyTemplate} headerStyle={{ minWidth: '7rem' }}></Column>
             <Column field="activo" header="Estado" body={estadoTemplate} headerStyle={{ minWidth: '7rem' }}></Column>
             <Column field="nombre" header="Nombre" sortable body={nombreBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
 
@@ -638,7 +650,7 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
 
           <Dialog
             visible={ecosistemaDialogNew}
-            style={{ width: '450px' }}
+            style={{ width: '550px' }}
             header="Ecosistema"
             modal
             className="p-fluid  "
@@ -660,6 +672,50 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
                       validate={{ required: true }}
                     />
                   ) : null}
+                  {!isNew && selectedEcosistema?.logoUrlContentType && (
+                    <img
+                      src={`content/uploads/${selectedEcosistema.logoUrlContentType}`}
+                      style={{ maxHeight: '300px' }}
+                      className="mt-0 mx-auto mb-5 block shadow-2 w-full"
+                    />
+                  )}
+                  <FileUpload
+                    ref={fileUploadRef}
+                    name="demo[1]"
+                    accept="image/*"
+                    maxFileSize={1000000}
+                    chooseLabel={isNew ? 'Suba la imagen' : 'Suba la imagen nueva'}
+                    uploadLabel="Modificar"
+                    onSelect={onTemplateSelect}
+                    onUpload={onUpload}
+                    customUpload
+                    uploadHandler={handleFileUpload}
+                    headerTemplate={headerTemplate}
+                    itemTemplate={itemTemplate}
+                    invalidFileSizeMessageSummary="Tamaño del archivo no válido"
+                    invalidFileSizeMessageDetail="El tamaño máximo de carga es de 1MB"
+                    emptyTemplate={emptyTemplate}
+                    chooseOptions={chooseOptions}
+                    uploadOptions={uploadOptions}
+                    cancelOptions={cancelOptions}
+                  />
+                  <div className=" mt-4 mb-3">
+                    <Checkbox
+                      onChange={e => {
+                        setEliminarImagen(e.checked);
+                        // Opcional: Limpiar fileUpload si se marca eliminar
+                        if (e.target.checked && fileUploadRef.current) {
+                          fileUploadRef.current.clear();
+                        }
+                      }}
+                      value="Eliminar imagen actual"
+                      checked={eliminarImagen}
+                      disabled={!selectedEcosistema?.logoUrlContentType ? true : false}
+                    ></Checkbox>
+                    <label htmlFor="ingredient4" className="ml-2">
+                      Eliminar imagen actual
+                    </label>
+                  </div>
                   <ValidatedField
                     label={translate('jhipsterApp.ecosistema.nombre')}
                     id="ecosistema-nombre"
@@ -697,26 +753,6 @@ const EcosistemaCrud = (props: RouteComponentProps<{ id: string }>) => {
                     hidden
                     id="logoUrlContentType"
                     type="text"
-                  />
-                  <FileUpload
-                    ref={fileUploadRef}
-                    name="demo[1]"
-                    accept="image/*"
-                    maxFileSize={1000000}
-                    chooseLabel={isNew ? 'Suba el Icono' : 'Suba el Icono nuevo'}
-                    uploadLabel="Modificar"
-                    onSelect={onTemplateSelect}
-                    onUpload={onUpload}
-                    customUpload
-                    uploadHandler={handleFileUpload}
-                    headerTemplate={headerTemplate}
-                    itemTemplate={itemTemplate}
-                    invalidFileSizeMessageSummary="Tamaño del archivo no válido"
-                    invalidFileSizeMessageDetail="El tamaño máximo de carga es de 1MB"
-                    emptyTemplate={emptyTemplate}
-                    chooseOptions={chooseOptions}
-                    uploadOptions={uploadOptions}
-                    cancelOptions={cancelOptions}
                   />
                   <ValidatedField
                     id="ecosistema-ecosistemaRol"

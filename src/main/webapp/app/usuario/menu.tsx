@@ -268,7 +268,7 @@ const MenuUsuario = props => {
               </div>
             </div>
 
-            <h5 className="text-sm  text-blue-600 font-medium mt-1">{accountAutenticado.firstName + ' ' + accountAutenticado.lastName}</h5>
+            <h5 className="text-sm  text-blue-600 font-medium mt-1">{accountAutenticado.login}</h5>
             <div className="linea"></div>
 
             {props.account1?.authorities?.find(rol => rol === 'ROLE_ADMIN') && (
@@ -326,14 +326,6 @@ const MenuUsuario = props => {
                     data-cy="menu2"
                   >
                     <span className="p-2">Innovaciones</span>
-                  </Link>
-                  <Link
-                    to={`entidad/anirista/anirista-crud`}
-                    className=" border-0 flex w-full  align-items-center justify-content-center  font-medium menuOver"
-                    id="jh-tre2"
-                    data-cy="menu2"
-                  >
-                    <span className="p-2">Aniristas</span>
                   </Link>
                 </div>
               )}

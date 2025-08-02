@@ -121,7 +121,7 @@ export const partialUpdateEntity = createAsyncThunk(
   'notificacion/partial_update_entity',
   async (entity: INotificacion, thunkAPI) => {
     const result = await axios.patch<INotificacion>(`${apiUrl}/${entity.id}`, cleanEntity(entity));
-    thunkAPI.dispatch(getEntities({}));
+
     return result;
   },
   { serializeError: serializeAxiosError }
@@ -132,7 +132,7 @@ export const deleteEntity = createAsyncThunk(
   async (id: string | number, thunkAPI) => {
     const requestUrl = `${apiUrl}/${id}`;
     const result = await axios.delete<INotificacion>(requestUrl);
-    thunkAPI.dispatch(getEntities({}));
+
     return result;
   },
   { serializeError: serializeAxiosError }

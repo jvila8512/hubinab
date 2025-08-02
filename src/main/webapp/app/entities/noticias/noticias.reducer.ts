@@ -50,7 +50,10 @@ export const getNoticiasByEcosistemaId = createAsyncThunk('noticias/fetch_entity
   const requestUrl = `${apiUrl}/byecosistema/${id}`;
   return axios.get<INoticias[]>(requestUrl);
 });
-
+export const getNoticiasByEcosistemaIDtodas = createAsyncThunk('noticias/fetch_entity_list-todas-todas', async (id: string | number) => {
+  const requestUrl = `${apiUrl}/noticiasByEcosistemasId/${id}`;
+  return axios.get<INoticias[]>(requestUrl);
+});
 export const getNoticiasByPublicabyEcosistemaIdbyUserId = createAsyncThunk(
   'noticias/fetch_entity_list-by-publica-ecosistema-user',
   async ({ id, iduser }: IQueryParams) => {
@@ -148,7 +151,8 @@ export const NoticiasSlice = createEntitySlice({
           getNoticiasByPublicabyEcosistemaIdbyUserId_Paginado,
           getNoticiasByPublicabyEcosistemaIdbyUserIdSolo,
 
-          getEntitiesByEcosistemaIdbyPublicoDeTodoslosEcosistemasUSerLogueado
+          getEntitiesByEcosistemaIdbyPublicoDeTodoslosEcosistemasUSerLogueado,
+          getNoticiasByEcosistemaIDtodas
         ),
         (state, action) => {
           const { data, headers } = action.payload;
@@ -176,7 +180,8 @@ export const NoticiasSlice = createEntitySlice({
           getNoticiasByPublicabyEcosistemaIdbyUserId,
           getNoticiasByPublicabyEcosistemaIdbyUserId_Paginado,
           getNoticiasByPublicabyEcosistemaIdbyUserIdSolo,
-          getEntitiesByEcosistemaIdbyPublicoDeTodoslosEcosistemasUSerLogueado
+          getEntitiesByEcosistemaIdbyPublicoDeTodoslosEcosistemasUSerLogueado,
+          getNoticiasByEcosistemaIDtodas
         ),
         state => {
           state.errorMessage = null;

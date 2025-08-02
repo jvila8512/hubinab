@@ -79,8 +79,8 @@ export const UserCrud = (props: RouteComponentProps<any>) => {
 
   const [globalFilter, setGlobalFilterValue] = useState('');
 
-  const [selectedUserChip, setselectedUserChip] = useState(null);
-  const [listRoles, setselectedLisRoles] = useState(null);
+  const [selectedUserChip, setselectedUserChip] = useState([]);
+  const [listRoles, setselectedLisRoles] = useState([]);
 
   useEffect(() => {
     dispatch(getUsersTodos());
@@ -330,7 +330,7 @@ export const UserCrud = (props: RouteComponentProps<any>) => {
 
           <DataTable
             ref={dt}
-            value={users}
+            value={Array.isArray(users) ? users : []}
             selection={selectedUsuario}
             onSelectionChange={e => setSelectedUsuario(e.value)}
             dataKey="id"

@@ -150,4 +150,9 @@ public class RetoServiceImpl implements RetoService {
     public List<Reto> busquedaGeneralPorEcosistemasId(List<Long> ecosistemas) {
         return retoRepository.findAllByActivoTrueAndEcosistemaIdInOrderByEcosistemaIdDesc(ecosistemas);
     }
+
+    @Override
+    public List<Reto> findAllWithEagerRelationshipsTodos() {
+        return retoRepository.findAllWithEagerRelationshipsTodossss();
+    }
 }

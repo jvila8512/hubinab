@@ -524,6 +524,7 @@ const ProyectosAdmin = (props: RouteComponentProps<{ id: string }>) => {
 
   const onTemplateSelect = e => {
     setSelectedFile(e.files[0]);
+    setEliminarImagen(false);
   };
 
   const handleFileUpload = event => {
